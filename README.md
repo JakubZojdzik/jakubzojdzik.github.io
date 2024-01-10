@@ -1,8 +1,29 @@
-# Maturalny SQL (MySQL)
+# Wstęp
 
-## Motywy
+Matura z informatyki oraz wiele szkół średnich silnie sugeruje naukę programu Microsoft Access w celu rozwiązywania zadań bazodanowych. Według mne, jest to strata czasu na naukę narzędzia, które nie jest powrzechnie wykożystywane ani przydatne. Znacznie bardziej rozwijająca jest nauka pisania zapytań w SQL. Mierząc się z zadaniami maturalnymi uświadomiłem sobie jak bardzo jeszcze nie znam tego języka. Podczas swoich zmagań z kolejnymi zadaniami do których CKE nie udostępniło rozwiązań a jedynie poprawne odpowiedzi, postanowiłem przyspieszyć proces nauki innym i upożądkowałem swoje problemy w jeden plik.
 
-### Klucze, których klucze obce nie występują w innej tabeli (NOT IN)
+Pragnę zaznaczyć, że nie jest to wprowadzenie dla tych którzy nie wiedzą co to SQL i nigdy nie pisali żadnych zapytań. Dalej będę zakładał, że wiesz co to `SELECT`, `UPDATE`, `ALTER`, `JOIN`, `GROUP BY`, `ORDER BY`, `LIMIT`, funkcje agregujące, typy danych. Jeśli te pojęcia są dla ciebie obce, zacznij od prostrzych tutoriali.
+
+Na maturze w formule 2023 możesz wybrać oprogramowanie:
+
+```
+OpenOffice/Apache
+OpenOffice w wersji 4.1 lub
+nowszej albo LibreOffice
+w wersji 5.3 lub nowszej
+(w tym: Write, Calc, Base)
+i pakiet XAMPP z: Apache,
+MySQL (MariaDB), PHP,
+phpMyAdmin
+```
+
+które jest dostępne zarówno pod Linuxem jak i Windowsem. Wszystkie kawałki kodu które zamieszczam są więc napisane w MySQL. Czasami będę też wspominał o phpmyadmin, czyli programie do zażądzania bazą danych MySQL lub MariaDB. To własnie w tym programie najłatwiej pisać i wykonywać wszystkie zapytania. Pozwala on też na łatwy i szybki import bazy danych z pliku `csv` jak wygląda to na maturze. Warto dobrze się z nim zapoznać aby uprościć sobie dalszą pracę.
+
+Jeśli jesteś zaznajomiony z dockerem, to w tym repozytorium znajdziesz plik `docker-compose.yml`, który postawi ci bazę danych MariaDB z hasłem do roota `root` (oczywiście warto je zmienić jeśli planujesz otwierać porty w publicznych sieciach), oraz phpmyadminem dostępnym pod portem `8080`. Utworzony zostanie również volume dla twojej bazy, więc po zdjęciu obrazu nie musisz obawiać się o utratę danych.
+
+# Motywy
+
+## Klucze, których klucze obce nie występują w innej tabeli (NOT IN)
 
 Przykład (matura 2022 maj): Uczniowie, których id nie występuje w tabeli ewidencje 4 dnia mesiąca:
 
@@ -16,7 +37,7 @@ WHERE u.IdUcznia NOT IN (
 )
 ```
 
-### Interpretacja stringa jako daty / czasu
+## Interpretacja stringa jako daty / czasu
 
 Przykład: W zadaniu podano datę w formacie `%d/%m/%Y`. Automatycznie jest interpretowana jako string. Aby to zmienić używamy `UPDATE`:
 
@@ -60,7 +81,7 @@ Należy trzymać kciuki że nigdy nie będzie zadania z minutami lub sekundami b
 CONCAT_WS('-', HOUR('01:02:03'), MINUTE('01:02:03'), SECOND('01:02:03'))
 ```
 
-### Operacje na grupie, jako warunek (HAVING)
+## Operacje na grupie, jako warunek (HAVING)
 
 Zadania:
 - [matura 2017 maj](https://arkusze.pl/matura-informatyka-2017-maj-poziom-rozszerzony/) Zad 5.3
@@ -78,7 +99,7 @@ HAVING (SUM(w.Bramki_zdobyte) = SUM(w.Bramki_stracone))
 
 Ważne jest, że klauzula `HAVING` jest ograniczona przez klauzulę `WHERE`. To oznacza, że jeśli `WHERE` odfiltrował tylko wiersze w których wiek>=18, to `HAVING COUNT(id_ucznia) > 20` policzy jedynie pełnoletnich uczniów w danej grupie, i pokaże tylko te grupy, w której ich ilość przekracza 20.
 
-### Zdobycie całego rekordu, który ma największą wartość (jakieś pole) w grupie
+## Zdobycie całego rekordu, który ma największą wartość (jakieś pole) w grupie
 
 Zadania:
 - [Matura 2019 maj](https://arkusze.pl/matura-informatyka-2019-maj-poziom-rozszerzony/) Zad 6.2
@@ -116,10 +137,11 @@ WHERE B.wiek IS NULL
 Obydwa podejścia zwrócą tylko jeden rekord, nawet jeśli kilka osób będzie miało ten sam wiek.
 
 
-### Dwa warunki, które ciężko ze sobą pogodzić w jednym zapytaniu
+## Dwa warunki, które ciężko ze sobą pogodzić w jednym zapytaniu
 
 Zadania:
 - [Matura 2021 maj](https://arkusze.pl/matura-informatyka-2021-maj-poziom-rozszerzony) zadanie 6.5 podpunkt b
+- [Matura 2023 maj](https://arkusze.pl/matura-informatyka-2023-maj-poziom-rozszerzony) zadanie 7.3
 
 Ta sytuacja może mieć miejsce, gdy chcemy odfiltrować pewne rekordy używając `WHERE`, oraz odfiltrować grupy spełniające jakiś warunek przy pomocy `HAVING`, ale jeszcze przed wyrzuceniem rekordów przez `WHERE`. Czasami wystarczy proste zagnieżdżenie zapytań:
 
@@ -160,7 +182,7 @@ To zapytanie poda nam klasy, w których jest ponad 30 obcokrajowców, a nie tego
 
 Gdy używamy `INTERSECT` musimy pamiętać, że **kolejność oraz ilość zwracanych kolumn musi być taka sama we wszystkich SELECTach**. W przeciwnym wypadku dane zostaną źle zinterpretowane.
 
-### Wartości indukowane warunkiem
+## Wartości indukowane warunkiem
 
 Warunki tworzymy klauzulą `CASE`:
 
@@ -184,10 +206,11 @@ ORDER BY
 END);
 ```
 
-### Ilość wierszy zwróconych przez `SELECT`
+## Ilość wierszy zwróconych przez `SELECT`
 
 Zadania:
 - [Matura 2021 maj](https://arkusze.pl/matura-informatyka-2021-maj-poziom-rozszerzony) zadanie 6.5 podpunkt a
+- [Matura 2023 maj](https://arkusze.pl/matura-informatyka-2023-maj-poziom-rozszerzony) zadanie 7.3
 
 Jeśli jesteśmy pytani nie o zestawienie, a o jedną liczbę, należy skożystać z faktu, że funkcje agregujące bez użycia `GROUP BY` domyślnie traktują cały wynik jako jedną grupę. Jeśli więc napisaliśmy zapytanie które zwraca wiersze, których musimy znać np. ilość, możemy otoczyć je kolejnym zapytaniem z `COUNT`:
 
@@ -199,7 +222,7 @@ FROM (
 ```
 
 
-### Brak kluca głównego
+## Brak kluca głównego
 
 Albo kwerendą:
 
@@ -210,9 +233,9 @@ ALTER TABLE `myTable` ADD COLUMN `id` INT AUTO_INCREMENT UNIQUE FIRST;
 Albo wyklikać w phpmyadminie: Dodać kolumnę Type=INT, A_I=true, Index=Primary
 
 
-## Funkcje do zapamiętania (lub znalezienia w dokumentacji jeśli będziesz miał do niej dostęp na maturze)
+# Funkcje do zapamiętania (lub znalezienia w dokumentacji jeśli będziesz miał do niej dostęp na maturze)
 
-### Funkcje czasu
+## Funkcje czasu
 
 Jeśli parementrem funkcji będzie `jednostka`, to należy wstawić tam jedną z wartości (SECOND, MINUTE, HOUT, DAY, WEEK, MONTH, YEAR).
 
@@ -226,17 +249,30 @@ Jeśli parementrem funkcji będzie `jednostka`, to należy wstawić tam jedną z
 - `ADDTIME(czas1, czas2)`: Dodaje czas2 do czas1, czas2 może być ujemny. Np. `ADDTIME("2017-06-15 09:34:21.000001", "2:10:5.000003")`
 - [`STR_TO_DATE(string, format)`](#interpretacja-stringa-jako-daty--czasu)
 
-## Zrobione matury
+## Funkcje tekstu
+
+- `LENGTH(napis)`: długość napisu w bajtach
+- `CONCAT(napis1, napis2, napis3, ...)`: Łączy napisy w jeden
+- `UPPER(napis)`, `LOWER(napis)`: Odpowiednio litery na odpowiednio wielkie lub małe. Resztę znaków pozostawia bez zmian
+- `SUBSTR(napis, start, dlugosc)`: Zwraca podciąg napisu od pozycji startowej o podanej długości
+- `LEFT(napis, dlugosc)`, `RIGHT(napis, dlugosc)`: Zwraca odpowiednio pierwsze lub ostatnie znaki napisu
+- `TRIM(napis)`, `LTRIM(napis)`, `RTRIM(napis)`: Usuwa białe znaki z odpowiednio początku i końca, tylko początku lub tylko końca napisu
+- `POSITION(podciag IN napis)`: Zwraca pierwszą pozycję, na której znalazł dany podciąg w napisie, lub 0 jeśli nie znalazł
+
+
+# Zrobione matury
 - 2022 maj
+- 2021 maj
 - 2020 czerwiec
 - 2019 maj
 - 2018 maj
 - 2017 maj
 
-## Trudne zadania warte powtórzenia:
+# Trudne zadania warte powtórzenia:
 - [2019 maj](https://arkusze.pl/matura-informatyka-2019-maj-poziom-rozszerzony) Zadanie 6.5
+- [2023 maj](https://arkusze.pl/matura-informatyka-2023-maj-poziom-rozszerzony) zadanie 7.4
 
-## TODO
+# TODO
 - Operacje na stringach (substringi, długość słowa, REPLACE, ...)
 - GREATEST(), LEAST(), połączenie MAX z GREATEST
 - Dokładne działanie JOINA
@@ -247,3 +283,4 @@ Jeśli parementrem funkcji będzie `jednostka`, to należy wstawić tam jedną z
 - ANY
 - Specjalne podanie błędnej odpowiedzi
 - obsługa phpmyadmina
+- UNION, UNION ALL, INTERSECT, EXCEPT
