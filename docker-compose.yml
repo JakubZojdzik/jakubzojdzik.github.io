@@ -17,7 +17,10 @@ services:
             - PMA_PORT=3306
         ports:
             - 8080:80
-
+        volumes:
+            - './themes/blueberry:/var/www/html/themes/blueberry'
+            - './themes/boodark:/var/www/html/themes/boodark'
+            - './themes/boodark-nord:/var/www/html/themes/boodark-nord'
 volumes:
     mariadb-data:
         driver: local

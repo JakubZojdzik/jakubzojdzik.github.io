@@ -267,6 +267,7 @@ Jeśli parementrem funkcji będzie `jednostka`, to należy wstawić tam jedną z
 - 2019 maj
 - 2018 maj
 - 2017 maj
+- 2016 maj
 
 # Trudne zadania warte powtórzenia:
 - [2019 maj](https://arkusze.pl/matura-informatyka-2019-maj-poziom-rozszerzony) Zadanie 6.5
