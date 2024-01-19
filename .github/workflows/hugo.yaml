@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.121.0
-      GO_VERSION: 1.23
+      GO_VERSION: 1.21.6
     steps:
       - name: Install Go
         uses: actions/setup-go@v2
