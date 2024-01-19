@@ -2,7 +2,7 @@
 
 CKE niestety nie udostępnia rozwiązań maturalnych zadań bazodanowych. Zmusza to do robienia sporego researchu przy każdym zadaniu którego nie jesteśmy w stanie zrobić. Postanowiłem więc zebrać swoje obserwacje aby ułatwić naukę innym.
 
-Nie jest to wprowadzenie dla tych którzy nie wiedzą co to SQL i nigdy nie pisali żadnych zapytań. Dalej będę zakładał, że wiesz co to `SELECT`, `UPDATE`, `ALTER`, `JOIN`, `GROUP BY`, `ORDER BY`, `LIMIT`, funkcje agregujące i typy danych.
+Nie jest to wprowadzenie dla tych którzy nie wiedzą co to SQL i nigdy nie pisali żadnych zapytań. Dalej będę zakładał, że wiesz co to `SELECT`, `UPDATE`, `ALTER`, `JOIN`, `GROUP BY`, `ORDER BY`, `LIMIT`, funkcje agregujące i typy danych. Czasami celowo pomijam szczegóły jeśli uważam że nie są istotne. Zawsze możesz doczytać więcej w [dokumentacji](https://dev.mysql.com/doc/refman/8.3/en/sql-statements.html)
 
 Na maturze w formule 2023 możesz wybrać oprogramowanie:
 
@@ -18,9 +18,15 @@ Na maturze w formule 2023 możesz wybrać oprogramowanie:
 
 które jest dostępne zarówno pod Linuxem jak i Windowsem. Wszystkie zapytnia które zamieszczam są więc napisane w MySQL. Czasami będę też wspominał o programie phpmyadmin, który służy do zażądzania bazą danych MySQL lub MariaDB. Z maturalnej oferty, chyba jest najlepszym wyborem do pisania i wykonywania wszystkich zapytań. Pozwala on też na łatwy i szybki import bazy danych z pliku `csv`. Warto dobrze się z nim zapoznać.
 
-Jeśli masz dockera, to w repozytorium znajdziesz plik `docker-compose.yml`, który posiada obrazy bazy danych MariaDB z hasłem do roota `root` (oczywiście warto je zmienić jeśli planujesz otwierać porty w publicznych sieciach), oraz phpmyadmin dostępnym pod portem `8080`. Utworzony zostanie również volume dla twojej bazy, więc po zdjęciu obrazu nie musisz obawiać się o utratę danych.
+Jeśli masz dockera, to w [repozytorium](https://github.com/JakubZojdzik/Maturalny-MySQL) znajdziesz plik `docker-compose.yml`, który posiada obrazy bazy danych MariaDB z hasłem do roota `root` (oczywiście warto je zmienić jeśli planujesz otwierać porty w publicznych sieciach), oraz phpmyadmin dostępnym pod portem `8080`. Utworzony zostanie również volume dla twojej bazy, więc po zdjęciu obrazu nie musisz obawiać się o utratę danych.
+
+Jeśli znajdziesz błąd, lub zechcesz dopisać coś do dokumentu, utwórz pull request ze swoimi zmianami.
+
+Miłego czytania!
 
 # Motywy
+
+Schematy, które pojawiły się na maturze. Starałem się dopisywać konkretne zadania, w których pojawiało się dane zagadnienie, ale niestety nie robiłem tego od początku, więc nie wszędzie znajduje się taki link.
 
 ## Brak klucza głównego
 
