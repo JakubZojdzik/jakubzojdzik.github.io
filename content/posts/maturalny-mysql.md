@@ -413,4 +413,4 @@ Jeśli parementrem funkcji jest `jednostka`, to należy wstawić tam jedną z wa
 
 # Dzięki!
 
-Miło mi że poświęciłeś czas na ten artykuł. Będzie mi miło jeś
+Miło mi że poświęciłeś czas na ten artykuł. Jeśli chcesz pomóc mi go udoskonalić, na samej górze jest przycisk edycji :)
