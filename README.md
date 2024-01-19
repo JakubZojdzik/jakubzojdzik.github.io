@@ -399,7 +399,12 @@ Jeśli parementrem funkcji jest `jednostka`, to należy wstawić tam jedną z wa
 - `POW(x, a)`: x podniesiony do a-tej potęgi, nie koniecznie całkowitej
 - `ROUND(x, a)`: x zaokrąglony do a miejsc po przecinku
 
-## Inne
+## Inne funkcje
 
 - `a.liczba BETWEEN 2000 AND 2012`: Wybrany rok będzie zawierał się pomiędzy 2000 i 2012. Zastępuje zapis z operatorami `<=`, `>=`
 - `a.ROK IN (2000, 2006, 2012)`: Wybrany rok będzie jedym z podanych: 2000, 2006 lub 2012. Zastępuje zapis z operatorami `=`
+
+
+# Dzięki za czytanie!
+
+Czekam na feedback -> [https://github.com/JakubZojdzik/Maturalny-MySQL](https://github.com/JakubZojdzik/Maturalny-MySQL)
