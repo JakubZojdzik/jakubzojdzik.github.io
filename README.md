@@ -99,6 +99,99 @@ HAVING (SUM(w.Bramki_zdobyte) = SUM(w.Bramki_stracone))
 
 Ważne jest, że klauzula `HAVING` jest ograniczona przez klauzulę `WHERE`. To oznacza, że jeśli `WHERE` odfiltrował tylko wiersze w których wiek>=18, to `HAVING COUNT(id_ucznia) > 20` policzy jedynie pełnoletnich uczniów w danej grupie, i pokaże tylko te grupy, w której ich ilość przekracza 20.
 
+## Wiele zapytań w jednym
+
+Zadania:
+- [matura 2019 maj](https://arkusze.pl/matura-informatyka-2019-maj-poziom-rozszerzony) Zadanie 6.5
+
+Zagnieżdżanie w sobie zapytań to bardzo przydatny i rozległy temat. Pozwala to na użycie wyniku jednego zapytania `SELECT` w kolejnym zapytaniu. Podzapytanie może zwracać zarówno skalar (liczbę, napis, datę, ...) jak i rekord lub tabelę. Możemy je umieścić w 3 miejscach starszego zapytania:
+
+1. `SELECT`
+
+```SQL
+SELECT employee_id, last_name,
+(
+    CASE WHEN department_id = (
+        SELECT department_id from departments WHERE location_id=2500
+    ) THEN 'Canada' ELSE 'USA' END
+)
+location FROM employees;
+```
+
+2. `FROM` (Podzapytanie musi posiadać alias)
+
+```SQL
+SELECT m.id_marki
+FROM marki m JOIN pojazdy p ON m.id_marki = p.id_marki
+JOIN
+(
+    SELECT m.id_marki, COUNT(DISTINCT p.typ_pojazdu) ilosc
+    FROM marki m JOIN pojazdy p ON m.id_marki = p.id_marki
+    GROUP BY m.id_marki
+) A
+ON A.id_marki = m.id_marki
+WHERE ilosc >= 4
+```
+
+3. `WHERE`
+
+```SQL
+SELECT name, population
+FROM city
+WHERE CountryCode IN
+(
+    SELECT code
+    FROM country
+    WHERE region = 'Caribbean'
+)
+ORDER BY population
+LIMIT 5
+```
+
+Trzeci przypadek często idzie w parze z operatorami:
+
+- `ANY`
+
+```SQL
+SELECT s1 FROM t1 WHERE s1 > ANY (SELECT s1 FROM t2);
+```
+
+Wyrażenie jest prawdziwe gdy warunek jest prawdziwy dla conajmniej jednej wartości zwróconej przez podzapytanie.
+
+- `ALL`
+
+```SQL
+SELECT s1 FROM t1 WHERE s1 > ALL (SELECT s1 FROM t2);
+```
+
+Wyrażenie jest prawdziwe gdy warunek jest prawdziwy dla każdej wartości zwróconej przez podzapytanie.
+
+- `IN`
+
+```SQL
+SELECT s1 FROM t1 WHERE s1 IN (SELECT s1 FROM t2);
+```
+
+Wyrażenie jest prawdziwe gdy wartość s1 występuje chociaż raz w podzapytaniu. W rzeczywistości jest to alias dla `= ANY`.
+
+- `NOT IN`
+
+```SQL
+SELECT s1 FROM t1 WHERE s1 NOT IN (SELECT s1 FROM t2);
+```
+
+Wyrażenie jest prawdziwe gdy wartość s1 nie występuje ani razu w podzapytaniu. W rzeczywistości jest to alias dla `!= ALL`.
+
+- `EXISTS`
+
+```SQL
+SELECT column1 FROM t1 WHERE EXISTS (SELECT * FROM t2);
+```
+
+Wyrażenie jest prawdziwe, gdy podzapytanie zwraca conajmniej jeden rekord
+
+<!-- - IN, ANY, ALL, SOME -->
+
 ## Zdobycie całego rekordu, który ma największą wartość (jakieś pole) w grupie
 
 Zadania:
@@ -137,13 +230,13 @@ WHERE B.wiek IS NULL
 Obydwa podejścia zwrócą tylko jeden rekord, nawet jeśli kilka osób będzie miało ten sam wiek.
 
 
-## Dwa warunki, które ciężko ze sobą pogodzić w jednym zapytaniu
+## Działania na zbiorach
 
 Zadania:
 - [Matura 2021 maj](https://arkusze.pl/matura-informatyka-2021-maj-poziom-rozszerzony) zadanie 6.5 podpunkt b
 - [Matura 2023 maj](https://arkusze.pl/matura-informatyka-2023-maj-poziom-rozszerzony) zadanie 7.3
 
-Ta sytuacja może mieć miejsce, gdy chcemy odfiltrować pewne rekordy używając `WHERE`, oraz odfiltrować grupy spełniające jakiś warunek przy pomocy `HAVING`, ale jeszcze przed wyrzuceniem rekordów przez `WHERE`. Czasami wystarczy proste zagnieżdżenie zapytań:
+Co zrobić gdy chcemy odfiltrować pewne rekordy używając `WHERE`, oraz odfiltrować grupy spełniające jakiś warunek przy pomocy `HAVING`, ale jeszcze przed wyrzuceniem rekordów przez `WHERE`. Czasami wystarczy proste zagnieżdżenie zapytań:
 
 ```SQL
 SELECT ...
@@ -155,14 +248,16 @@ FROM (
 WHERE ...
 ```
 
-Jednak często nie wygląda to najczytelniej, szczególnie gdy zagnieżdżonych jest więcej zapytań. Wtedy bardzo pomocny bywa operator `INTERSECT`. Zwróci on iloczyn dwóch lub więcej zbiorów (SELECTów). Załóżmy, że chcemy wyciągnąć z bazy danych informacje na temat klas w szkole, w których jest powyżej 30 uczniów, i jest conajmniej jeden obcokrajowiec. `INTERSECT` może tutaj pomóc:
+Jednak często nie wygląda to najczytelniej, szczególnie gdy zagnieżdżonych jest więcej zapytań. Wtedy bardzo pomocny bywa operator `INTERSECT`. Zwróci on iloczyn dwóch lub więcej zbiorów (wyników zapytania `SELECT`). Załóżmy, że chcemy wyciągnąć z bazy danych informacje na temat klas w szkole, w których jest powyżej 30 uczniów, i jest conajmniej jeden obcokrajowiec. `INTERSECT` może tutaj pomóc:
 
 ```SQL
 SELECT k.nazwa
 FROM klasa k JOIN uczen u ON u.id = k.id_ucznia
 HAVING SUM(u.id_ucznia) > 30
 GROUP BY k.nazwa
+
 INTERSECT
+
 SELECT DISTINCT k.nazwa
 FROM klasa k JOIN uczen u ON u.id = k.id_ucznia
 WHERE u.kraj != "Polska"
@@ -180,7 +275,12 @@ HAVING SUM(u.id_ucznia) > 30
 
 To zapytanie poda nam klasy, w których jest ponad 30 obcokrajowców, a nie tego oczekiwaliśmy. Na szczęście, sama składnia MySQLa podpowiada nam jak się zachowa, i wymusza umieszczenie `WHERE` nad `GROUP BY` i `HAVING`. W ramach ćwiczenia, warto zastanowić się, jak poprawnie wykonać to zapytanie bez użycia operatora `INTERSECT`.
 
-Gdy używamy `INTERSECT` musimy pamiętać, że **kolejność oraz ilość zwracanych kolumn musi być taka sama we wszystkich SELECTach**. W przeciwnym wypadku dane zostaną źle zinterpretowane.
+Gdy używamy `INTERSECT` musimy pamiętać, że **kolejność oraz ilość zwracanych kolumn musi być taka sama we wszystkich zapytaniach**. W przeciwnym wypadku dane zostaną źle zinterpretowane.
+
+`INTERSECT` jest tylko jednym z trzech operatorów zbiorów w MySQLu. Pozostałe dwa używamy w analogiczny sposób. Są to:
+
+- `A UNION B`: Oblicza sumę zbiorów A i B
+- `A EXCEPT B`: Oblicza różnicę zbiorów A - B (rekordy obecne w A ale nieobecne w B)
 
 ## Wartości indukowane warunkiem
 
