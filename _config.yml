@@ -1,0 +1,32 @@
+# Site Specific Configuration
+name: LightSpeed
+description: Zagadnienia bazodanowe na maturze z informatyki w formule 2015 i nowej.
+url: https://jakubzojdzik.github.io/Maturalny-MySQL/
+author: Jakub Żojdzik
+timezone: Europe/Warsaw
+timezone_short: CET
+
+# Keywords
+keywords: ['matura', 'MySQL', 'informatyka']
+
+# Styling
+sass:
+  sass_dir: _sass
+  style: expanded # compact, expanded or compressed
+
+# Paginate
+pagination:
+  enabled: true
+  # Value set low for demonstration purposes
+  per_page: 3
+  sort_field: 'date'
+  sort_reverse: true
+
+# Exclusions
+exclude: [ 'README.md' ]
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-paginate-v2
+  - jekyll-seo-tag
