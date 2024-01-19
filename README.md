@@ -1,13 +1,3 @@
----
-layout: default
----
-
-<!-- Add these lines to the head of your HTML layout -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes/themes/prism-material-dark.css" />
-<script defer src="https://cdn.jsdelivr.net/npm/prism@1.23.0/prism.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/prism@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
-
-
 # Wstęp
 
 CKE niestety nie udostępnia rozwiązań maturalnych zadań bazodanowych. Zmusza to do robienia sporego researchu przy każdym zadaniu którego nie jesteśmy w stanie zrobić. Postanowiłem więc zebrać swoje obserwacje aby ułatwić naukę innym.
@@ -41,9 +31,9 @@ Schematy, które pojawiły się na maturze. Starałem się dopisywać konkretne
 
 Gdy w tabeli podanej w zadaniu nie mamy pewności czy dana kolumna jest unikalna warto dodać nową kolumnę z id. Można to zrobić kwerendą:
 
-<pre><code class="language-sql">
+```SQL
 ALTER TABLE `myTable` ADD COLUMN `id` INT AUTO_INCREMENT UNIQUE FIRST;
-</code></pre>
+```
 
 Lub wyklikać w phpmyadminie: Dodać kolumnę Type=INT, A_I=true, Index=Primary
 
@@ -52,10 +42,10 @@ Lub wyklikać w phpmyadminie: Dodać kolumnę Type=INT, A_I=true, Index=Primary
 Zdarza się, że tabela podana w zadaniu posiada kolumnę z datą lub godziną. Jeśli format daty nie jest odpowiedni, pole to będzie interpretowane w zapytaniu jako tekst i nie będzie możliwości kożystania z [funkcji czasu](#funkcje-czasu).
 Przykład: W zadaniu podano datę w formacie `DD/MM/YYYY`. Aby ją zmienić używamy `UPDATE` oraz funkcji `STR_TO_DATE()`:
 
-<pre><code class="language-sql">
+```SQL
 UPDATE wyniki
 SET Data_meczu = STR_TO_DATE(Data_meczu, "%d/%m/%Y")
-</code></pre>
+```
 
 Drugim parametrem funkcji to format.
 
@@ -89,15 +79,15 @@ Lub gdy potrzebujemy liczb bez zer wiodących:
 
 Należy trzymać kciuki że nigdy nie będzie zadania z minutami lub sekundami bez zer wiodących, ponieważ taki format nie jest obsługiwany przez funkcję `STR_TO_DATE`. Jeśli jednak cke stwierdzi, że jest to świetny test sprawdzający umiejętności informatyczne maturzystów, można poradzić sobie w następujący sposób:
 
-<pre><code class="language-sql">
+```SQL
 CONCAT_WS('-', HOUR('01:02:03'), MINUTE('01:02:03'), SECOND('01:02:03'))
-</code></pre>
+```
 
 W dodatku należy zmienić typ kolumny na `DATE` / `DATETIME`. Łatwo to wyklikać w phpmyadminie. Należy uważać na precyzję. DATETIME(0) oznacza precyzję do sekund, dla milisekund będzie DATETIME(6). W phpmyadminie możemy to ustawić w polu `Length/Values`. Kwerenda będzie wyglądać tak:
 
-<pre><code class="language-sql">
+```SQL
 ALTER TABLE tabela MODIFY kolumna DATE;
-</code></pre>
+```
 
 ## Wiele zapytań w jednym
 
@@ -110,7 +100,7 @@ Zagnieżdżanie w sobie zapytań to bardzo przydatny i rozległy temat. Pozwala 
 
 1. `SELECT`
 
-   <pre><code class="language-sql">
+   ```SQL
    SELECT employee_id, last_name,
    (
        CASE WHEN department_id = (
@@ -118,11 +108,11 @@ Zagnieżdżanie w sobie zapytań to bardzo przydatny i rozległy temat. Pozwala 
        ) THEN 'Canada' ELSE 'USA' END
    )
    location FROM employees;
-   </code></pre>
+   ```
 
 2. `FROM` (Podzapytanie musi posiadać alias)
 
-   <pre><code class="language-sql">
+   ```SQL
    SELECT m.id_marki
    FROM marki m JOIN pojazdy p ON m.id_marki = p.id_marki
    JOIN
@@ -133,11 +123,11 @@ Zagnieżdżanie w sobie zapytań to bardzo przydatny i rozległy temat. Pozwala 
    ) A
    ON A.id_marki = m.id_marki
    WHERE ilosc >= 4
-   </code></pre>
+   ```
 
 3. `WHERE`
 
-   <pre><code class="language-sql">
+   ```SQL
    SELECT name, population
    FROM city
    WHERE CountryCode IN
@@ -148,47 +138,47 @@ Zagnieżdżanie w sobie zapytań to bardzo przydatny i rozległy temat. Pozwala 
    )
    ORDER BY population
    LIMIT 5
-   </code></pre>
+   ```
 
 Trzeci przypadek często idzie w parze z operatorami:
 
 - `ANY`
 
-  <pre><code class="language-sql">
+  ```SQL
   SELECT s1 FROM t1 WHERE s1 > ANY (SELECT s1 FROM t2);
-  </code></pre>
+  ```
 
   Wyrażenie jest prawdziwe gdy warunek jest prawdziwy dla conajmniej jednej wartości zwróconej przez podzapytanie.
 
 - `ALL`
 
-  <pre><code class="language-sql">
+  ```SQL
   SELECT s1 FROM t1 WHERE s1 > ALL (SELECT s1 FROM t2);
-  </code></pre>
+  ```
 
   Wyrażenie jest prawdziwe gdy warunek jest prawdziwy dla każdej wartości zwróconej przez podzapytanie.
 
 - `IN`
 
-  <pre><code class="language-sql">
+  ```SQL
   SELECT s1 FROM t1 WHERE s1 IN (SELECT s1 FROM t2);
-  </code></pre>
+  ```
 
   Wyrażenie jest prawdziwe gdy wartość s1 występuje chociaż raz w podzapytaniu. W rzeczywistości jest to alias dla `= ANY`.
 
 - `NOT IN`
 
-  <pre><code class="language-sql">
+  ```SQL
   SELECT s1 FROM t1 WHERE s1 NOT IN (SELECT s1 FROM t2);
-  </code></pre>
+  ```
 
   Wyrażenie jest prawdziwe gdy wartość s1 nie występuje ani razu w podzapytaniu. W rzeczywistości jest to alias dla `!= ALL`.
 
 - `EXISTS`
 
-  <pre><code class="language-sql">
+  ```SQL
   SELECT column1 FROM t1 WHERE EXISTS (SELECT * FROM t2);
-  </code></pre>
+  ```
 
   Wyrażenie jest prawdziwe, gdy podzapytanie zwraca conajmniej jeden rekord
 
@@ -200,11 +190,11 @@ Zadania:
 
 Czasami chcemy znaleźć na przykład ilość id, które występują w innej tabeli jako klucz obcy w relacji jeden do wielu. Zwykły `COUNT` policzy każde wystąpienie id, nawet jeśli się powtórzy. Aby uzyskać ilość różnych id, można zastosować `COUNT(DISTINCT ...)`. Weźmy przykładową bazę, która zawiera tabelę z pracownikami oraz tabelę z dziennikiem użycia ekspresu do kawy. Chcemy znaleźć liczbę pracowników, którzy robili sobie dzisiaj kawę. Aby zapobiec wielokrotnemu liczeniu jednego pracownika, użyjemy `DISTINCT`:
 
-<pre><code class="language-sql">
+```SQL
 SELECT COUNT(DISTINCT p.id)
 FROM pracownicy p JOIN ekspres e ON p.id = e.id_pracownika
 WHERE DAY(e.czas) = DAY(NOW())
-</code></pre>
+```
 
 Słowa kluczowego `DISTINCT` możemy również użyć w odniesieniu do `SELECT` (`SELECT DISTINCT ...`). Zwróci on wtedy tylko parami różne rekordy.
 
@@ -217,29 +207,29 @@ Zadania:
 
 Może się zdażyć, że w zależności od jakiejś cechy rekordu musimy wprowadzić jakieś ich rozróżnienie. Używamy wtedy klauzuli `CASE`:
 
-<pre><code class="language-sql">
+```SQL
 CASE
     WHEN condition1 THEN result1
     WHEN condition2 THEN result2
     WHEN conditionN THEN resultN
     ELSE result
 END
-</code></pre>
+```
 
 Lub jeśli uzależniamy wartość `CASE` od jednej wartości można skrócić zapis:
 
-<pre><code class="language-sql">
+```SQL
 CASE case_value
     WHEN value1 THEN result1
     WHEN value2 THEN result2
     WHEN valueN THEN resultN
     ELSE result
 END
-</code></pre>
+```
 
 `CASE` można użyć jako kolumna w `SELECT`, lub np. w `ORDER BY`:
 
-<pre><code class="language-sql">
+```SQL
 SELECT CustomerName, City, Country
 FROM Customers
 ORDER BY
@@ -247,18 +237,18 @@ ORDER BY
     WHEN City IS NULL THEN Country
     ELSE City
 END);
-</code></pre>
+```
 
 ## Ilość wierszy zwróconych przez `SELECT`
 
 Jeśli jesteśmy pytani nie o zestawienie, a o jedną liczbę, należy skożystać z faktu, że funkcje agregujące bez użycia `GROUP BY` domyślnie traktują cały wynik jako jedną grupę. Jeśli więc napisaliśmy zapytanie które zwraca wiersze, których musimy znać np. ilość, możemy otoczyć je kolejnym zapytaniem z `COUNT`:
 
-<pre><code class="language-sql">
+```SQL
 SELECT COUNT(*)
 FROM (
     <nasze zapytanie>
 ) A
-</code></pre>
+```
 
 ## Operacje na grupie jako warunek (HAVING)
 
@@ -270,13 +260,13 @@ Zadania:
 
 Weźmy bazę danych z tabelą uczniów i tabelą klas. Chcemy znaleźć klasy, w których jest ponad 20 pełnoletnich uczniów.
 
-<pre><code class="language-sql">
+```SQL
 SELECT k.nazwa
 FROM uczniowie u JOIN klasy k ON u.id = k.id_ucznia
 WHERE u.wiek >= 18
 GROUP BY d.Nazwa
 HAVING COUNT(u.id) > 20
-</code></pre>
+```
 
 Ważne jest, że klauzula `HAVING` jest ograniczona przez klauzulę `WHERE`. To oznacza, że jeśli `WHERE` odfiltrował tylko wiersze w których `u.wiek >= 18`, to `HAVING COUNT(u.id) > 20` policzy jedynie pełnoletnich uczniów w danej grupie, i pokaże tylko te grupy, w której ich ilość przekracza 20.
 
@@ -289,7 +279,7 @@ Zadania:
 
 Co zrobić gdy chcemy odfiltrować pewne rekordy używając `WHERE`, oraz odfiltrować grupy spełniające jakiś warunek przy pomocy `HAVING`, ale jeszcze przed wyrzuceniem rekordów przez `WHERE`. Czasami wystarczy proste zagnieżdżenie zapytań:
 
-<pre><code class="language-sql">
+```SQL
 SELECT ...
 FROM (
     SELECT ...
@@ -297,11 +287,11 @@ FROM (
     HAVING ...
 )
 WHERE ...
-</code></pre>
+```
 
 Jednak często nie wygląda to najczytelniej, szczególnie gdy zagnieżdżonych jest więcej zapytań. Wtedy bardzo pomocny bywa operator `INTERSECT`. Zwróci on iloczyn dwóch lub więcej zbiorów (wyników zapytania `SELECT`). Załóżmy, że chcemy wyciągnąć z bazy danych informacje na temat klas w szkole, w których jest powyżej 30 uczniów, i jest conajmniej jeden obcokrajowiec. `INTERSECT` może tutaj pomóc:
 
-<pre><code class="language-sql">
+```SQL
 SELECT k.nazwa
 FROM klasa k JOIN uczen u ON u.id = k.id_ucznia
 HAVING SUM(u.id_ucznia) > 30
@@ -312,17 +302,17 @@ INTERSECT
 SELECT DISTINCT k.nazwa
 FROM klasa k JOIN uczen u ON u.id = k.id_ucznia
 WHERE u.kraj != "Polska"
-</code></pre>
+```
 
 Pierwsze zapytanie zwróci klasy w których jest powyżej 30 uczniów, drugie zapytanie pokaże klasy w których jest jakiś obcokrajowiec. `INTERSECT` łączy to w jedno zapytanie i pokaże tylko klasy spełniające obydwa te warunki. Warto zaznaczyć, że gdy spróbujemy w najprostrzy i trochę intuicyjny sposób połączyć to w jednego SELECTa, zapytanie będzie **niepoprawne, i może zwrócić błędną odpowiedź**:
 
-<pre><code class="language-sql">
+```SQL
 SELECT DISTINCT k.nazwa
 FROM klasa k JOIN uczen u ON u.id = k.id_ucznia
 WHERE u.kraj != "Polska"
 GROUP BY k.nazwa
 HAVING SUM(u.id_ucznia) > 30
-</code></pre>
+```
 
 To zapytanie poda nam klasy, w których jest ponad 30 obcokrajowców, a nie tego oczekiwaliśmy. Na szczęście, sama składnia MySQLa podpowiada nam jak się zachowa, i wymusza umieszczenie `WHERE` nad `GROUP BY` i `HAVING`. W ramach ćwiczenia, warto zastanowić się, jak poprawnie wykonać to zapytanie bez użycia operatora `INTERSECT`.
 
@@ -341,17 +331,17 @@ Zadania:
 
 Załóżmy że interesuje nas zestawienie wieku najstarszej osoby w poszczególnych miastach. Jeśli szukamy tylko wieku, wystarczy:
 
-<pre><code class="language-sql">
+```SQL
 SELECT l.miasto, MAX(l.wiek)
 FROM ludzie l
 GROUP BY l.miasto
-</code></pre>
+```
 
 Problem zaczyna się, gdy chcemy również zdobyć imię i nazwisko każdej z tych osób. Jest to bardzo popularny problem z dużą ilością rozwiązań. Istnieje nawet osobna kategoria pytań na [stack overflow](https://stackoverflow.com/questions/tagged/greatest-n-per-group) poświęcona właśnie temu zagadnieniu. Mi najbardziej podobają się te 2 podejścia:
 
 1. `JOIN` z tabelą wiążącą miasto z wiekiem (widoczną powyżej):
 
-   <pre><code class="language-sql">
+   ```SQL
    SELECT B.miasto, A.imie, A.nazwisko, B.wiek
    FROM ludzie A JOIN (
        SELECT l.miasto, MAX(l.wiek) wiek
@@ -359,15 +349,15 @@ Problem zaczyna się, gdy chcemy również zdobyć imię i nazwisko każdej z ty
        GROUP BY l.miasto
    ) B ON A.wiek = B.wiek AND A.miasto = B.miasto
    GROUP BY B.miasto
-   </code></pre>
+   ```
 
 2. Sprytny `Self JOIN`. Każdy rekord z A łączymy z rekordem z B wtedy i tylko wtedy gdy wiek z B jest większy. Jeśli nie ma rekordu, który ma większy wiek, do każdego pola z B wpisane zostaną NULLe, ponieważ używamy `LEFT JOIN`. Mamy wtedy pewność, że pola z A reprezentują najstarszą osobę:
-   <pre><code class="language-sql">
+   ```SQL
    SELECT A.miasto, A.imie, A.nazwisko, A.wiek
    FROM ludzie A LEFT JOIN ludzie B
    ON A.miasto = B.miasto AND A.wiek < B.wiek
    WHERE B.wiek IS NULL
-   </code></pre>
+   ```
 
 Obydwa rozwiązania zwrócą tylko jeden rekord, nawet jeśli kilka osób będzie miało ten sam wiek.
 
