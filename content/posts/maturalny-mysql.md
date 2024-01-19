@@ -1,5 +1,12 @@
-# Wstęp
+---
+title: 'Maturalny MySQL'
+summary: 'Maturalne zagadnienia związane z zapytaniami SQL'
+date: 2024-01-19T21:29:58+01:00
+draft: false
+---
 
+
+# Wstęp
 CKE niestety nie udostępnia rozwiązań maturalnych zadań bazodanowych. Zmusza to do robienia sporego researchu przy każdym zadaniu którego nie jesteśmy w stanie zrobić. Postanowiłem więc zebrać swoje obserwacje aby ułatwić naukę innym.
 
 Nie jest to wprowadzenie dla tych którzy nie wiedzą co to SQL i nigdy nie pisali żadnych zapytań. Dalej będę zakładał, że wiesz co to `SELECT`, `UPDATE`, `ALTER`, `JOIN`, `GROUP BY`, `ORDER BY`, `LIMIT`, funkcje agregujące i typy danych. Czasami celowo pomijam szczegóły jeśli uważam że nie są istotne. Zawsze możesz doczytać więcej w [dokumentacji](https://dev.mysql.com/doc/refman/8.3/en/sql-statements.html)
@@ -404,7 +411,6 @@ Jeśli parementrem funkcji jest `jednostka`, to należy wstawić tam jedną z wa
 - `a.liczba BETWEEN 2000 AND 2012`: Wybrany rok będzie zawierał się pomiędzy 2000 i 2012. Zastępuje zapis z operatorami `<=`, `>=`
 - `a.ROK IN (2000, 2006, 2012)`: Wybrany rok będzie jedym z podanych: 2000, 2006 lub 2012. Zastępuje zapis z operatorami `=`
 
+# Dzięki!
 
-# Dzięki za czytanie!
-
-Czekam na feedback -> [https://github.com/JakubZojdzik/Maturalny-MySQL](https://github.com/JakubZojdzik/Maturalny-MySQL)
+Miło mi że poświęciłeś czas na ten artykuł. Będzie mi miło jeś

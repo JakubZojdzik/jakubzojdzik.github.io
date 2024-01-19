@@ -12,7 +12,7 @@ title = "Jakub Żojdzik"
   # mainSections = ["section1", "section2"]
   # description = "My awesome website"
 
-[author]
+[params.author]
   name = "Jakub Żojdzik"
   # image = "img/author.jpg"
   # headline = "I'm only human"
