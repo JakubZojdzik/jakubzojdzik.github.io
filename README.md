@@ -1,25 +1,24 @@
 # Wstęp
 
-Matura z informatyki oraz wiele szkół średnich silnie sugeruje naukę programu Microsoft Access w celu rozwiązywania zadań bazodanowych. Według mne, jest to strata czasu na naukę narzędzia, które nie jest powrzechnie wykożystywane ani przydatne. Znacznie bardziej rozwijająca jest nauka pisania zapytań w SQL. Mierząc się z zadaniami maturalnymi uświadomiłem sobie jak bardzo jeszcze nie znam tego języka. Podczas swoich zmagań z kolejnymi zadaniami do których CKE nie udostępniło rozwiązań a jedynie poprawne odpowiedzi, postanowiłem przyspieszyć proces nauki innym i upożądkowałem swoje problemy w jeden plik.
+CKE niestety nie udostępnia rozwiązań maturalnych zadań bazodanowych. Zmusza to do robienia sporego researchu przy każdym zadaniu którego nie jesteśmy w stanie zrobić. Postanowiłem więc zebrać swoje obserwacje aby ułatwić naukę innym.
 
-Pragnę zaznaczyć, że nie jest to wprowadzenie dla tych którzy nie wiedzą co to SQL i nigdy nie pisali żadnych zapytań. Dalej będę zakładał, że wiesz co to `SELECT`, `UPDATE`, `ALTER`, `JOIN`, `GROUP BY`, `ORDER BY`, `LIMIT`, funkcje agregujące, typy danych. Jeśli te pojęcia są dla ciebie obce, zacznij od prostrzych tutoriali.
+Nie jest to wprowadzenie dla tych którzy nie wiedzą co to SQL i nigdy nie pisali żadnych zapytań. Dalej będę zakładał, że wiesz co to `SELECT`, `UPDATE`, `ALTER`, `JOIN`, `GROUP BY`, `ORDER BY`, `LIMIT`, funkcje agregujące i typy danych.
 
 Na maturze w formule 2023 możesz wybrać oprogramowanie:
 
-```
-OpenOffice/Apache
-OpenOffice w wersji 4.1 lub
-nowszej albo LibreOffice
-w wersji 5.3 lub nowszej
-(w tym: Write, Calc, Base)
-i pakiet XAMPP z: Apache,
-MySQL (MariaDB), PHP,
-phpMyAdmin
-```
+> OpenOffice/Apache
+> OpenOffice w wersji 4.1 lub
+> nowszej albo LibreOffice
+> w wersji 5.3 lub nowszej
+> (w tym: Write, Calc, Base)
+> i pakiet XAMPP z: Apache,
+> MySQL (MariaDB), PHP,
+> phpMyAdmin
 
-które jest dostępne zarówno pod Linuxem jak i Windowsem. Wszystkie kawałki kodu które zamieszczam są więc napisane w MySQL. Czasami będę też wspominał o phpmyadmin, czyli programie do zażądzania bazą danych MySQL lub MariaDB. To własnie w tym programie najłatwiej pisać i wykonywać wszystkie zapytania. Pozwala on też na łatwy i szybki import bazy danych z pliku `csv` jak wygląda to na maturze. Warto dobrze się z nim zapoznać aby uprościć sobie dalszą pracę.
 
-Jeśli jesteś zaznajomiony z dockerem, to w tym repozytorium znajdziesz plik `docker-compose.yml`, który postawi ci bazę danych MariaDB z hasłem do roota `root` (oczywiście warto je zmienić jeśli planujesz otwierać porty w publicznych sieciach), oraz phpmyadminem dostępnym pod portem `8080`. Utworzony zostanie również volume dla twojej bazy, więc po zdjęciu obrazu nie musisz obawiać się o utratę danych.
+które jest dostępne zarówno pod Linuxem jak i Windowsem. Wszystkie zapytnia które zamieszczam są więc napisane w MySQL. Czasami będę też wspominał o programie phpmyadmin, który służy do zażądzania bazą danych MySQL lub MariaDB. Z maturalnej oferty, chyba jest najlepszym wyborem do pisania i wykonywania wszystkich zapytań. Pozwala on też na łatwy i szybki import bazy danych z pliku `csv`. Warto dobrze się z nim zapoznać.
+
+Jeśli masz dockera, to w repozytorium znajdziesz plik `docker-compose.yml`, który posiada obrazy bazy danych MariaDB z hasłem do roota `root` (oczywiście warto je zmienić jeśli planujesz otwierać porty w publicznych sieciach), oraz phpmyadmin dostępnym pod portem `8080`. Utworzony zostanie również volume dla twojej bazy, więc po zdjęciu obrazu nie musisz obawiać się o utratę danych.
 
 # Motywy
 
@@ -348,7 +347,7 @@ ALTER TABLE `myTable` ADD COLUMN `id` INT AUTO_INCREMENT UNIQUE FIRST;
 Albo wyklikać w phpmyadminie: Dodać kolumnę Type=INT, A_I=true, Index=Primary
 
 
-# Funkcje do zapamiętania (lub znalezienia w dokumentacji jeśli będziesz miał do niej dostęp na maturze)
+# Ważne funkcje
 
 ## Funkcje czasu
 
@@ -391,18 +390,7 @@ Jeśli parementrem funkcji będzie `jednostka`, to należy wstawić tam jedną z
 - 2016 maj
 - 2015 maj
 
-# Trudne zadania warte powtórzenia:
-- [2019 maj](https://arkusze.pl/matura-informatyka-2019-maj-poziom-rozszerzony) Zadanie 6.5
-- [2023 maj](https://arkusze.pl/matura-informatyka-2023-maj-poziom-rozszerzony) zadanie 7.4
-
 # TODO
-- Operacje na stringach (substringi, długość słowa, REPLACE, ...)
 - GREATEST(), LEAST(), połączenie MAX z GREATEST
-- Dokładne działanie JOINA
 - Zaokrąglenia
 - Rzutowanie typów
-- Punktacja zadań
-- ANY
-- Specjalne podanie błędnej odpowiedzi
-- obsługa phpmyadmina
-- UNION, UNION ALL, INTERSECT, EXCEPT
