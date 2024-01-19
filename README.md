@@ -15,12 +15,11 @@ Na maturze w formule 2023 możesz wybrać oprogramowanie:
 > MySQL (MariaDB), PHP,
 > phpMyAdmin
 
-
 które jest dostępne zarówno pod Linuxem jak i Windowsem. Wszystkie zapytnia które zamieszczam są więc napisane w MySQL. Czasami będę też wspominał o programie phpmyadmin, który służy do zażądzania bazą danych MySQL lub MariaDB. Z maturalnej oferty, chyba jest najlepszym wyborem do pisania i wykonywania wszystkich zapytań. Pozwala on też na łatwy i szybki import bazy danych z pliku `csv`. Warto dobrze się z nim zapoznać.
 
 Jeśli masz dockera, to w [repozytorium](https://github.com/JakubZojdzik/Maturalny-MySQL) znajdziesz plik `docker-compose.yml`, który posiada obrazy bazy danych MariaDB z hasłem do roota `root` (oczywiście warto je zmienić jeśli planujesz otwierać porty w publicznych sieciach), oraz phpmyadmin dostępnym pod portem `8080`. Utworzony zostanie również volume dla twojej bazy, więc po zdjęciu obrazu nie musisz obawiać się o utratę danych.
 
-Jeśli znajdziesz błąd, lub zechcesz dopisać coś do dokumentu, utwórz pull request ze swoimi zmianami.
+Jeśli znajdziesz błąd, lub zechcesz dopisać coś do dokumentu, utwórz pull request w [repozytorium](https://github.com/JakubZojdzik/Maturalny-MySQL) ze swoimi zmianami.
 
 Miłego czytania!
 
@@ -51,25 +50,30 @@ SET Data_meczu = STR_TO_DATE(Data_meczu, "%d/%m/%Y")
 Drugim parametrem funkcji to format.
 
 Najczęściej używane symbole przy określaniu formatu daty w zadaniach maturalnych to:
+
 - `%Y`: czterocyfrowy rok, np. `2024`
 - `%m`: dwucyfrowy numer miesiąca, np. `06`
 - `%d`: dwucyfrowy numer dnia miesiąca, np. `28`
 
 Znacznie rzadziej, ale również przydatne mogą się okazać:
+
 - `%y`: dwucyfrowy rok, np. `24`
 - `%c`: numer miesiąca bez zer wiodących, np. `6`
 - `%e`: numer dnia miesiąca bez zer wiodących, np. `9`
 
 W przypadku formatu czasu, zazwyczaj możliwe jest użycie
+
 - `%T`: czas w 24-godzinnym formacie, oddzielony dwukropkami, zera wiodące wypełniające do 2 cyfr (hh:mm:ss), np. `04:20:00`
 
 Jeśli format jest inny, trzeba skorzystać z:
+
 - `%H`: dwucyfrowa godzina w 24-godzinnym formacie, np. `14`
 - `%h`: dwucyfrowa godzina w 12-godzinnym formacie, np. `02`
 - `%i`: dwucyfrowa liczba minut, np. `07`
 - `%s`: dwucyfrowa liczba sekund, np. `59`
 
 Lub gdy potrzebujemy liczb bez zer wiodących:
+
 - `%k`: godzina w 24-godzinnym formacie, bez zer wiodących, np. `14`
 - `%l`: godzina w 12-godzinnym formacie, bez zer wiodących, np. `02`
 
@@ -88,6 +92,7 @@ ALTER TABLE tabela MODIFY kolumna DATE;
 ## Wiele zapytań w jednym
 
 Zadania:
+
 - [matura 2019 maj](https://arkusze.pl/matura-informatyka-2019-maj-poziom-rozszerzony) Zadanie 6.5
 - [Matura 2022 maj](https://arkusze.pl/matura-informatyka-2022-maj-poziom-rozszerzony/) zadanie 6.4
 
@@ -95,91 +100,92 @@ Zagnieżdżanie w sobie zapytań to bardzo przydatny i rozległy temat. Pozwala 
 
 1. `SELECT`
 
-    ```SQL
-    SELECT employee_id, last_name,
-    (
-        CASE WHEN department_id = (
-            SELECT department_id from departments WHERE location_id=2500
-        ) THEN 'Canada' ELSE 'USA' END
-    )
-    location FROM employees;
-    ```
+   ```SQL
+   SELECT employee_id, last_name,
+   (
+       CASE WHEN department_id = (
+           SELECT department_id from departments WHERE location_id=2500
+       ) THEN 'Canada' ELSE 'USA' END
+   )
+   location FROM employees;
+   ```
 
 2. `FROM` (Podzapytanie musi posiadać alias)
 
-    ```SQL
-    SELECT m.id_marki
-    FROM marki m JOIN pojazdy p ON m.id_marki = p.id_marki
-    JOIN
-    (
-        SELECT m.id_marki, COUNT(DISTINCT p.typ_pojazdu) ilosc
-        FROM marki m JOIN pojazdy p ON m.id_marki = p.id_marki
-        GROUP BY m.id_marki
-    ) A
-    ON A.id_marki = m.id_marki
-    WHERE ilosc >= 4
-    ```
+   ```SQL
+   SELECT m.id_marki
+   FROM marki m JOIN pojazdy p ON m.id_marki = p.id_marki
+   JOIN
+   (
+       SELECT m.id_marki, COUNT(DISTINCT p.typ_pojazdu) ilosc
+       FROM marki m JOIN pojazdy p ON m.id_marki = p.id_marki
+       GROUP BY m.id_marki
+   ) A
+   ON A.id_marki = m.id_marki
+   WHERE ilosc >= 4
+   ```
 
 3. `WHERE`
 
-    ```SQL
-    SELECT name, population
-    FROM city
-    WHERE CountryCode IN
-    (
-        SELECT code
-        FROM country
-        WHERE region = 'Caribbean'
-    )
-    ORDER BY population
-    LIMIT 5
-    ```
+   ```SQL
+   SELECT name, population
+   FROM city
+   WHERE CountryCode IN
+   (
+       SELECT code
+       FROM country
+       WHERE region = 'Caribbean'
+   )
+   ORDER BY population
+   LIMIT 5
+   ```
 
 Trzeci przypadek często idzie w parze z operatorami:
 
 - `ANY`
 
-    ```SQL
-    SELECT s1 FROM t1 WHERE s1 > ANY (SELECT s1 FROM t2);
-    ```
+  ```SQL
+  SELECT s1 FROM t1 WHERE s1 > ANY (SELECT s1 FROM t2);
+  ```
 
-    Wyrażenie jest prawdziwe gdy warunek jest prawdziwy dla conajmniej jednej wartości zwróconej przez podzapytanie.
+  Wyrażenie jest prawdziwe gdy warunek jest prawdziwy dla conajmniej jednej wartości zwróconej przez podzapytanie.
 
 - `ALL`
 
-    ```SQL
-    SELECT s1 FROM t1 WHERE s1 > ALL (SELECT s1 FROM t2);
-    ```
+  ```SQL
+  SELECT s1 FROM t1 WHERE s1 > ALL (SELECT s1 FROM t2);
+  ```
 
-    Wyrażenie jest prawdziwe gdy warunek jest prawdziwy dla każdej wartości zwróconej przez podzapytanie.
+  Wyrażenie jest prawdziwe gdy warunek jest prawdziwy dla każdej wartości zwróconej przez podzapytanie.
 
 - `IN`
 
-    ```SQL
-    SELECT s1 FROM t1 WHERE s1 IN (SELECT s1 FROM t2);
-    ```
+  ```SQL
+  SELECT s1 FROM t1 WHERE s1 IN (SELECT s1 FROM t2);
+  ```
 
-    Wyrażenie jest prawdziwe gdy wartość s1 występuje chociaż raz w podzapytaniu. W rzeczywistości jest to alias dla `= ANY`.
+  Wyrażenie jest prawdziwe gdy wartość s1 występuje chociaż raz w podzapytaniu. W rzeczywistości jest to alias dla `= ANY`.
 
 - `NOT IN`
 
-    ```SQL
-    SELECT s1 FROM t1 WHERE s1 NOT IN (SELECT s1 FROM t2);
-    ```
+  ```SQL
+  SELECT s1 FROM t1 WHERE s1 NOT IN (SELECT s1 FROM t2);
+  ```
 
-    Wyrażenie jest prawdziwe gdy wartość s1 nie występuje ani razu w podzapytaniu. W rzeczywistości jest to alias dla `!= ALL`.
+  Wyrażenie jest prawdziwe gdy wartość s1 nie występuje ani razu w podzapytaniu. W rzeczywistości jest to alias dla `!= ALL`.
 
 - `EXISTS`
 
-    ```SQL
-    SELECT column1 FROM t1 WHERE EXISTS (SELECT * FROM t2);
-    ```
+  ```SQL
+  SELECT column1 FROM t1 WHERE EXISTS (SELECT * FROM t2);
+  ```
 
-    Wyrażenie jest prawdziwe, gdy podzapytanie zwraca conajmniej jeden rekord
+  Wyrażenie jest prawdziwe, gdy podzapytanie zwraca conajmniej jeden rekord
 
 ## Zliczanie unikalnych wartości (`DISTINCT`)
 
 Zadania:
+
 - [Matura 2015 maj](https://arkusze.pl/matura-informatyka-2015-maj-poziom-rozszerzony/) zadanie 6.4
 
 Czasami chcemy znaleźć na przykład ilość id, które występują w innej tabeli jako klucz obcy w relacji jeden do wielu. Zwykły `COUNT` policzy każde wystąpienie id, nawet jeśli się powtórzy. Aby uzyskać ilość różnych id, można zastosować `COUNT(DISTINCT ...)`. Weźmy przykładową bazę, która zawiera tabelę z pracownikami oraz tabelę z dziennikiem użycia ekspresu do kawy. Chcemy znaleźć liczbę pracowników, którzy robili sobie dzisiaj kawę. Aby zapobiec wielokrotnemu liczeniu jednego pracownika, użyjemy `DISTINCT`:
@@ -195,6 +201,7 @@ Słowa kluczowego `DISTINCT` możemy również użyć w odniesieniu do `SELECT` 
 ## Wartości indukowane warunkiem
 
 Zadania:
+
 - [Matura 2021 maj](https://arkusze.pl/matura-informatyka-2021-maj-poziom-rozszerzony) zadanie 6.5 podpunkt a
 - [Matura 2023 maj](https://arkusze.pl/matura-informatyka-2023-maj-poziom-rozszerzony) zadanie 7.3
 
@@ -221,6 +228,7 @@ END
 ```
 
 `CASE` można użyć jako kolumna w `SELECT`, lub np. w `ORDER BY`:
+
 ```SQL
 SELECT CustomerName, City, Country
 FROM Customers
@@ -233,7 +241,6 @@ END);
 
 ## Ilość wierszy zwróconych przez `SELECT`
 
-
 Jeśli jesteśmy pytani nie o zestawienie, a o jedną liczbę, należy skożystać z faktu, że funkcje agregujące bez użycia `GROUP BY` domyślnie traktują cały wynik jako jedną grupę. Jeśli więc napisaliśmy zapytanie które zwraca wiersze, których musimy znać np. ilość, możemy otoczyć je kolejnym zapytaniem z `COUNT`:
 
 ```SQL
@@ -243,12 +250,10 @@ FROM (
 ) A
 ```
 
-
-
-
 ## Operacje na grupie jako warunek (HAVING)
 
 Zadania:
+
 - [matura 2017 maj](https://arkusze.pl/matura-informatyka-2017-maj-poziom-rozszerzony/) Zad 5.3
 
 `HAVING` umożliwia stworzenie waruneku, który dotyczy grupy a nie wiersza. Dzięki temu można w nim kożystać z funkcji agregujących. Warto zapamiętać, że prawie zawsze chcemy wtedy kożystac z `GROUP BY`. W przeciwnym wypadku, cała tabela będzie rozważana jako jedna grupa.
@@ -268,6 +273,7 @@ Ważne jest, że klauzula `HAVING` jest ograniczona przez klauzulę `WHERE`. To 
 ## Działania na zbiorach
 
 Zadania:
+
 - [Matura 2021 maj](https://arkusze.pl/matura-informatyka-2021-maj-poziom-rozszerzony) zadanie 6.5 podpunkt b
 - [Matura 2023 maj](https://arkusze.pl/matura-informatyka-2023-maj-poziom-rozszerzony) zadanie 7.3
 
@@ -317,12 +323,11 @@ Gdy używamy `INTERSECT` musimy pamiętać, że **kolejność oraz ilość zwrac
 - `A UNION B`: Oblicza sumę zbiorów A i B
 - `A EXCEPT B`: Oblicza różnicę zbiorów A - B (rekordy obecne w A ale nieobecne w B)
 
-
 ## Zdobycie całego rekordu, który ma największą wartość (jakieś pole) w grupie
 
 Zadania:
-- [Matura 2019 maj](https://arkusze.pl/matura-informatyka-2019-maj-poziom-rozszerzony/) Zad 6.2
 
+- [Matura 2019 maj](https://arkusze.pl/matura-informatyka-2019-maj-poziom-rozszerzony/) Zad 6.2
 
 Załóżmy że interesuje nas zestawienie wieku najstarszej osoby w poszczególnych miastach. Jeśli szukamy tylko wieku, wystarczy:
 
@@ -335,23 +340,24 @@ GROUP BY l.miasto
 Problem zaczyna się, gdy chcemy również zdobyć imię i nazwisko każdej z tych osób. Jest to bardzo popularny problem z dużą ilością rozwiązań. Istnieje nawet osobna kategoria pytań na [stack overflow](https://stackoverflow.com/questions/tagged/greatest-n-per-group) poświęcona właśnie temu zagadnieniu. Mi najbardziej podobają się te 2 podejścia:
 
 1. `JOIN` z tabelą wiążącą miasto z wiekiem (widoczną powyżej):
-    ```SQL
-    SELECT B.miasto, A.imie, A.nazwisko, B.wiek
-    FROM ludzie A JOIN (
-        SELECT l.miasto, MAX(l.wiek) wiek
-        FROM ludzie l
-        GROUP BY l.miasto
-    ) B ON A.wiek = B.wiek AND A.miasto = B.miasto
-    GROUP BY B.miasto
-    ```
+
+   ```SQL
+   SELECT B.miasto, A.imie, A.nazwisko, B.wiek
+   FROM ludzie A JOIN (
+       SELECT l.miasto, MAX(l.wiek) wiek
+       FROM ludzie l
+       GROUP BY l.miasto
+   ) B ON A.wiek = B.wiek AND A.miasto = B.miasto
+   GROUP BY B.miasto
+   ```
 
 2. Sprytny `Self JOIN`. Każdy rekord z A łączymy z rekordem z B wtedy i tylko wtedy gdy wiek z B jest większy. Jeśli nie ma rekordu, który ma większy wiek, do każdego pola z B wpisane zostaną NULLe, ponieważ używamy `LEFT JOIN`. Mamy wtedy pewność, że pola z A reprezentują najstarszą osobę:
-    ```SQL
-    SELECT A.miasto, A.imie, A.nazwisko, A.wiek
-    FROM ludzie A LEFT JOIN ludzie B
-    ON A.miasto = B.miasto AND A.wiek < B.wiek
-    WHERE B.wiek IS NULL
-    ```
+   ```SQL
+   SELECT A.miasto, A.imie, A.nazwisko, A.wiek
+   FROM ludzie A LEFT JOIN ludzie B
+   ON A.miasto = B.miasto AND A.wiek < B.wiek
+   WHERE B.wiek IS NULL
+   ```
 
 Obydwa rozwiązania zwrócą tylko jeden rekord, nawet jeśli kilka osób będzie miało ten sam wiek.
 
