@@ -221,6 +221,21 @@ FROM (
 ) A
 ```
 
+## Zliczanie unikalnych wartości (`DISTINCT`)
+
+Zadania:
+- [Matura 2015 maj](https://arkusze.pl/matura-informatyka-2015-maj-poziom-rozszerzony/) zadanie 6.4
+
+Czasami chcemy znaleźć na przykład ilość id, które występują w innej tabeli jako klucz obcy w relacji jeden do wielu. Zwykły `COUNT` policzy każde wystąpienie id, nawet jeśli się powtórzy. Aby uzyskać ilość różnych id, można zastosować `COUNT(DISTINCT ...)`. Weźmy przykładową bazę, która zawiera tabelę z pracownikami oraz tabelę z dziennikiem użycia ekspresu do kawy. Chcemy znaleźć liczbę pracowników, którzy robili sobie dzisiaj kawę. Aby zapobiec wielokrotnemu liczeniu jednego pracownika, użyjemy `DISTINCT`:
+
+```SQL
+SELECT COUNT(DISTINCT p.id)
+FROM pracownicy p JOIN ekspres e ON p.id = e.id_pracownika
+WHERE DAY(e.czas) = DAY(NOW())
+```
+
+Słowa kluczowego `DISTINCT` możemy również użyć w odniesieniu do `SELECT`. Zwróci on wtedy tylko parami różne rekordy.
+
 
 ## Brak kluca głównego
 
@@ -259,6 +274,12 @@ Jeśli parementrem funkcji będzie `jednostka`, to należy wstawić tam jedną z
 - `TRIM(napis)`, `LTRIM(napis)`, `RTRIM(napis)`: Usuwa białe znaki z odpowiednio początku i końca, tylko początku lub tylko końca napisu
 - `POSITION(podciag IN napis)`: Zwraca pierwszą pozycję, na której znalazł dany podciąg w napisie, lub 0 jeśli nie znalazł
 
+## Inne
+
+- `a.Rok BETWEEN 2000 AND 2012`: Wybrany rok będzie zawierał się pomiędzy 2000 i 2012. Zastępuje zapis z operatorami `<=`, `>=`
+- `a.ROK IN (2000, 2006, 2012)`: Wybrany rok będzie jedym z podanych: 2000, 2006 lub 2012. Zastępuje zapis z operatorami `=`
+
+
 
 # Zrobione matury
 - 2022 maj
@@ -268,6 +289,7 @@ Jeśli parementrem funkcji będzie `jednostka`, to należy wstawić tam jedną z
 - 2018 maj
 - 2017 maj
 - 2016 maj
+- 2015 maj
 
 # Trudne zadania warte powtórzenia:
 - [2019 maj](https://arkusze.pl/matura-informatyka-2019-maj-poziom-rozszerzony) Zadanie 6.5
@@ -279,7 +301,6 @@ Jeśli parementrem funkcji będzie `jednostka`, to należy wstawić tam jedną z
 - Dokładne działanie JOINA
 - Zaokrąglenia
 - Rzutowanie typów
-- DISTINCT
 - Punktacja zadań
 - ANY
 - Specjalne podanie błędnej odpowiedzi
