@@ -8,8 +8,7 @@ title = "Jakub Żojdzik"
 
 [params]
   dateFormat = "2 January 2006"
-
-  # mainSections = ["section1", "section2"]
+  # mainSections = ["posts"]
   # description = "My awesome website"
 
 [params.author]
