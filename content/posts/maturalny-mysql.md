@@ -7,11 +7,11 @@ draft: false
 
 
 # Wstęp
-CKE niestety nie udostępnia rozwiązań maturalnych zadań bazodanowych. Zmusza to do robienia sporego researchu przy każdym zadaniu którego nie jesteśmy w stanie zrobić. Postanowiłem więc zebrać swoje obserwacje aby ułatwić naukę innym.
+CKE niestety nie udostępnia rozwiązań maturalnych zadań bazodanowych. Zmusza to do robienia sporego researchu przy każdym zadaniu którego nie jesteśmy w stanie zrobić. Zebrałem więc swoje obserwacje aby ułatwić naukę innym.
 
 Nie jest to wprowadzenie dla tych którzy nie wiedzą co to SQL i nigdy nie pisali żadnych zapytań. Dalej będę zakładał, że wiesz co to `SELECT`, `UPDATE`, `ALTER`, `JOIN`, `GROUP BY`, `ORDER BY`, `LIMIT`, funkcje agregujące i typy danych. Czasami celowo pomijam szczegóły jeśli uważam że nie są istotne. Zawsze możesz doczytać więcej w [dokumentacji](https://dev.mysql.com/doc/refman/8.3/en/sql-statements.html)
 
-Na maturze w formule 2023 możesz wybrać oprogramowanie:
+Na maturze w formule 2023 można wybrać oprogramowanie:
 
 > OpenOffice/Apache
 > OpenOffice w wersji 4.1 lub
@@ -22,17 +22,17 @@ Na maturze w formule 2023 możesz wybrać oprogramowanie:
 > MySQL (MariaDB), PHP,
 > phpMyAdmin
 
-które jest dostępne zarówno pod Linuxem jak i Windowsem. Wszystkie zapytnia które zamieszczam są więc napisane w MySQL. Czasami będę też wspominał o programie phpmyadmin, który służy do zażądzania bazą danych MySQL lub MariaDB. Z maturalnej oferty, chyba jest najlepszym wyborem do pisania i wykonywania wszystkich zapytań. Pozwala on też na łatwy i szybki import bazy danych z pliku `csv`. Warto dobrze się z nim zapoznać.
+które jest dostępne zarówno pod Linuxem jak i Windowsem. Wszystkie zapytnia które zamieszczam są więc napisane w MySQL. Czasami wspominam o programie phpmyadmin, który służy do zażądzania bazą danych MySQL lub MariaDB. Z maturalnej oferty, chyba jest najlepszym wyborem do pisania i wykonywania wszystkich zapytań. Pozwala on też na łatwy i szybki import bazy danych z pliku `csv`. Warto dobrze się z nim zapoznać.
 
 Jeśli masz dockera, to w [repozytorium](https://github.com/JakubZojdzik/Maturalny-MySQL) znajdziesz plik `docker-compose.yml`, który posiada obrazy bazy danych MariaDB z hasłem do roota `root` (oczywiście warto je zmienić jeśli planujesz otwierać porty w publicznych sieciach), oraz phpmyadmin dostępnym pod portem `8080`. Utworzony zostanie również volume dla twojej bazy, więc po zdjęciu obrazu nie musisz obawiać się o utratę danych.
 
-Jeśli znajdziesz błąd, lub zechcesz dopisać coś do dokumentu, utwórz pull request w [repozytorium](https://github.com/JakubZojdzik/Maturalny-MySQL) ze swoimi zmianami.
+Gdy znajdziesz błąd, lub zechcesz dopisać coś do dokumentu, pod nagłówkiem znajdziesz przycisk edycji.
 
 Miłego czytania!
 
-# Motywy
+# Zagadnienia
 
-Schematy, które pojawiły się na maturze. Starałem się dopisywać konkretne zadania, w których pojawiało się dane zagadnienie, ale niestety nie robiłem tego od początku, więc nie wszędzie znajduje się taki link.
+Schematy, które pojawiły się na maturze. Starałem się dopisywać konkretne zadania do tematów, ale niestety nie robiłem tego od początku, więc nie wszędzie znajduje się odpowiedni link.
 
 ## Brak klucza głównego
 
@@ -45,6 +45,9 @@ ALTER TABLE `myTable` ADD COLUMN `id` INT AUTO_INCREMENT UNIQUE FIRST;
 Lub wyklikać w phpmyadminie: Dodać kolumnę Type=INT, A_I=true, Index=Primary
 
 ## Interpretacja stringa jako daty / czasu
+
+Zadania:
+- Chyba każde z datą
 
 Zdarza się, że tabela podana w zadaniu posiada kolumnę z datą lub godziną. Jeśli format daty nie jest odpowiedni, pole to będzie interpretowane w zapytaniu jako tekst i nie będzie możliwości kożystania z [funkcji czasu](#funkcje-czasu).
 Przykład: W zadaniu podano datę w formacie `DD/MM/YYYY`. Aby ją zmienić używamy `UPDATE` oraz funkcji `STR_TO_DATE()`:
@@ -100,7 +103,7 @@ ALTER TABLE tabela MODIFY kolumna DATE;
 
 Zadania:
 
-- [matura 2019 maj](https://arkusze.pl/matura-informatyka-2019-maj-poziom-rozszerzony) Zadanie 6.5
+- [Matura 2019 maj](https://arkusze.pl/matura-informatyka-2019-maj-poziom-rozszerzony) Zadanie 6.5
 - [Matura 2022 maj](https://arkusze.pl/matura-informatyka-2022-maj-poziom-rozszerzony/) zadanie 6.4
 
 Zagnieżdżanie w sobie zapytań to bardzo przydatny i rozległy temat. Pozwala to na użycie wyniku jednego zapytania `SELECT` w kolejnym zapytaniu. Podzapytanie może zwracać zarówno skalar (liczbę, napis, datę, ...) jak i jeden rekord lub całą tabelę. Możemy je umieścić w 3 miejscach starszego zapytania:
@@ -257,7 +260,7 @@ FROM (
 ) A
 ```
 
-## Operacje na grupie jako warunek (HAVING)
+## Operacje na grupie jako warunek (`HAVING`)
 
 Zadania:
 
@@ -370,7 +373,7 @@ Obydwa rozwiązania zwrócą tylko jeden rekord, nawet jeśli kilka osób będzi
 
 # Ważne funkcje
 
-Aby lepiej poradzić sobie w warunkach maturalnych (bez internetu), dobrze jest znać, lub przynajmniej wiedzieć o istnieniu poniższych funkcji.
+Dobrze je znać, lub przynajmniej wiedzieć o ich istnieniu
 
 ## Funkcje czasu
 
