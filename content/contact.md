@@ -1,7 +1,7 @@
 ---
 title: "Contact"
 layout: "simple"
-
+sharingLinks: [""]
 ---
 
 ## Email ✉️
