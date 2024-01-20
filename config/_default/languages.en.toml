@@ -8,14 +8,13 @@ title = "Jakub Żojdzik"
 
 [params]
   dateFormat = "2 January 2006"
-  # mainSections = ["posts"]
-  # description = "My awesome website"
+  mainSections = ["posts"]
+  description = "My personal portfolio website "
 
-[params.author]
+[author]
   name = "Jakub Żojdzik"
   # image = "img/author.jpg"
-  # headline = "I'm only human"
-   bio = "Nie jak inaczej raczej"
+  headline = "I write coffee to drink code"
   links = [
      { email = "mailto:jakubzojdzik@duck.com" },
   #   { link = "https://link-to-some-website.com/" },
