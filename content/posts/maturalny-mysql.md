@@ -24,7 +24,7 @@ Na maturze w formule 2023 można wybrać oprogramowanie:
 
 które jest dostępne zarówno pod Linuxem jak i Windowsem. Wszystkie zapytnia które zamieszczam są więc napisane w MySQL. Czasami wspominam o programie phpmyadmin, który służy do zażądzania bazą danych MySQL lub MariaDB. Z maturalnej oferty, chyba jest najlepszym wyborem do pisania i wykonywania wszystkich zapytań. Pozwala on też na łatwy i szybki import bazy danych z pliku `csv`. Warto dobrze się z nim zapoznać.
 
-Jeśli masz dockera, to w [repozytorium](https://github.com/JakubZojdzik/Maturalny-MySQL) znajdziesz plik `docker-compose.yml`, który posiada obrazy bazy danych MariaDB z hasłem do roota `root` (oczywiście warto je zmienić jeśli planujesz otwierać porty w publicznych sieciach), oraz phpmyadmin dostępnym pod portem `8080`. Utworzony zostanie również volume dla twojej bazy, więc po zdjęciu obrazu nie musisz obawiać się o utratę danych.
+Jeśli masz dockera, to dla przyspieszenia procesu przygotowywania środowiska polecam ten krótki [`docker-compose.yml`](https://gist.githubusercontent.com/JakubZojdzik/1422497cf09cf5e0355b64743ca9cc4f/raw/ba270c8a94db374384c45ad1f330bb84e406999a/docker-compose.yml), który posiada obrazy bazy danych MariaDB z hasłem do roota `root` (oczywiście warto je zmienić jeśli planujesz otwierać porty w publicznych sieciach), oraz phpmyadmin dostępnym pod portem `8080`. Utworzony zostanie również volume dla twojej bazy, więc po zdjęciu obrazu nie musisz obawiać się o utratę danych.
 
 Gdy znajdziesz błąd, lub zechcesz dopisać coś do dokumentu, pod nagłówkiem znajdziesz przycisk edycji.
 
