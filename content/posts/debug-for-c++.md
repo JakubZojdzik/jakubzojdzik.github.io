@@ -1,6 +1,6 @@
 ---
-title: 'Debug for C++'
-summary: 'Steal print() from Python and put it into C++'
+title: "Debug for C++"
+summary: "Steal print() from Python and put it into C++"
 date: 2024-01-24T23:20:51+01:00
 draft: true
 ---
@@ -17,7 +17,7 @@ I store all of these tools in [my repository](https://github.com/JakubZojdzik/de
 
 The optimization I found most useful is custom function for printing variables. If you've never heard of it, it might not sound very helpful, but you'll quickly see how powerful it is. Thanks to [templates](https://en.cppreference.com/w/cpp/language/templates), we can make the `debug()` function accept arguments of practically any type, even those from STL. This will significantly speed up the code debugging process since printing types like vector, stack, queue, tuple will only take one line and will be nicely formatted on the screen.
 
-In the repo, it is implemented in [`debug.hpp`](https://github.com/JakubZojdzik/debug/blob/master/debug.hpp) file. Actually, it is `define` directive, because it has access to argument name which is also printed. Take note that the function uses `cerr` output stream instead in order to avoid cluttering the standard output. Additionally, if the function is executed on the judging server by mistake, its output will likely be ignored.
+In the repo, it is implemented in [`debug.hpp`](https://github.com/JakubZojdzik/debug/blob/master/debug.hpp) file. Actually, it is `define` directive, because it has access to argument name which is also printed out. Take note that the function uses `cerr` output stream in order to avoid cluttering the standard output. Additionally, if the function is executed on the judging server by mistake, its output will likely be ignored.
 
 The print format is following:
 
@@ -31,11 +31,13 @@ As the declaration is in header file, we want to include it somewhere. To make i
 
 # Automatic `main.cpp` file generation
 
-Even if we want to make this file simplest possible, it take some time to include required libraries, open `std` namespace, define main function. Especially if we want to do it again for every task. Thats why I have my ready to use `main.cpp` file template.
+Even if we want this file to be the simplest possible, it take some time to include required libraries, open `std` namespace, define main function. Especially if we want to do it again for every task. That is why I have my ready-to-use `main.cpp` file template.
 
 ## File template
 
-Taking advantage of the fact that I don't have to write this file from scratch for each task, I don't need to worry about its length. I'm using multiple `typedef` specifiers:
+Taking advantage of the fact that I don't have to write this file from scratch for each task, I don't need to worry about its length, so I added everything that might come in handy for me.
+
+I'm using multiple `typedef` specifiers:
 
 ```cpp
 typedef long long ll;
@@ -73,11 +75,11 @@ I include my `debug` function in smart way:
 
 The `#ifdef LOCAL` directive is true, when the `-DLOCAL` flag is present during compliation. This ensures that if I leave debug function calls in the code I submit, its declaration will be empty on the judging server, preventing compilation errors.
 
-Check the full file template [here](https://github.com/JakubZojdzik/debug/blob/master/main.cpp).
+You may want to customize this file according to your habits and preferences. Check the full file template [here](https://github.com/JakubZojdzik/debug/blob/master/main.cpp).
 
 ## Script for pasting template
 
-It would be annoying to manually paste this template into new files. That's why I wrote a sshort bash cript to automate the process and make it easier:
+It would be annoying to manually paste this template into new files. That's why I have written a short bash script to automate it:
 
 ```bash
 #!/bin/bash
@@ -95,7 +97,7 @@ As you see, your template should be present in `~/Templates` directory. To under
 */
 ```
 
-First line of this comment is for you to fill it with your name, if you want to sign your codes. Second line will be automatically overwrited with date of creation of the file with script.
+First line of this comment is for you to fill it with your name, if you want to sign your codes. Second line contains `--DATE--` string, that script will replace with current date with `sed`.
 
 Remember to provide executable permissions to the script:
 
@@ -105,10 +107,9 @@ chmod +x <script_name>
 
 And if you want to have an easy access to it globally, you have to place it in one of directories from your `$PATH` variable. Probably `/usr/local/bin` is good choice.
 
-
 # Compilation
 
-Last process to speed up is compilation. Online judging systems often uses some additional flags, that we don't really want to rewrite every time. It can be improved similarly to the script creating the main.cpp file, or as an alias in Bash. I use the second option. Paste these lines at the end of your `.bashrc` or its equivalent in the shell you are using:
+Last process to speed up is compilation. Online judging systems often uses some additional flags, that we don't really want to rewrite every time. We can write bash script for compiling, or add an alias in Bash. I use the second option as it is very short. Paste these lines at the end of your `.bashrc` or its equivalent in the shell you are using:
 
 ```bash
 c() {
@@ -156,26 +157,28 @@ cd ..
 rm -R debug
 ```
 
-Of course, these commands can vary a little depending on you os and software.
+Of course, these commands can vary a little depending on your os and software, so be sure you know what are you doing.
 
 # Effects
 
-If you've followed the steps correctly, you should be able to perform the following actions:
+If you've followed steps correctly, you should be able to perform following actions:
 
 - Create `main.cpp` file with the initial content:
-    ```bash
-    newmain
-    ```
+
+  ```bash
+  newmain
+  ```
 
 - Compile it quickly with the appropriate flags
-    ```bash
-    c
-    ```
+
+  ```bash
+  c
+  ```
 
 - Run the binary and obtain the output (if you previously added something to main)
-    ```bash
-    ./main
-    ```
+  ```bash
+  ./main
+  ```
 
 # Thank you for reading
 
