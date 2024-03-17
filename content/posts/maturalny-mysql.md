@@ -47,7 +47,7 @@ Lub wyklikać w phpmyadminie: Dodać kolumnę Type=INT, A_I=true, Index=Primary
 ## Interpretacja stringa jako daty / czasu
 
 Zadania:
-- Chyba każde z datą
+- Każde z datą
 
 Zdarza się, że tabela podana w zadaniu posiada kolumnę z datą lub godziną. Jeśli format daty nie jest odpowiedni, pole to będzie interpretowane w zapytaniu jako tekst i nie będzie możliwości kożystania z [funkcji czasu](#funkcje-czasu).
 Przykład: W zadaniu podano datę w formacie `DD/MM/YYYY`. Aby ją zmienić używamy `UPDATE` oraz funkcji `STR_TO_DATE()`:
@@ -106,7 +106,7 @@ Zadania:
 - [Matura 2019 maj](https://arkusze.pl/matura-informatyka-2019-maj-poziom-rozszerzony) Zadanie 6.5
 - [Matura 2022 maj](https://arkusze.pl/matura-informatyka-2022-maj-poziom-rozszerzony/) zadanie 6.4
 
-Zagnieżdżanie w sobie zapytań to bardzo przydatny i rozległy temat. Pozwala to na użycie wyniku jednego zapytania `SELECT` w kolejnym zapytaniu. Podzapytanie może zwracać zarówno skalar (liczbę, napis, datę, ...) jak i jeden rekord lub całą tabelę. Możemy je umieścić w 3 miejscach starszego zapytania:
+Zagnieżdżanie w sobie zapytań jest bardzo przydatne. Pozwala na użycie wyniku jednego zapytania `SELECT` w kolejnym zapytaniu. Podzapytanie może zwracać zarówno skalar (liczbę, napis, datę, ...) jak i jeden rekord lub całą tabelę. Możemy je umieścić w 3 miejscach starszego zapytania:
 
 1. `SELECT`
 
@@ -274,7 +274,7 @@ Weźmy bazę danych z tabelą uczniów i tabelą klas. Chcemy znaleźć klasy, w
 SELECT k.nazwa
 FROM uczniowie u JOIN klasy k ON u.id = k.id_ucznia
 WHERE u.wiek >= 18
-GROUP BY d.Nazwa
+GROUP BY k.nazwa
 HAVING COUNT(u.id) > 20
 ```
 
@@ -324,7 +324,7 @@ GROUP BY k.nazwa
 HAVING SUM(u.id_ucznia) > 30
 ```
 
-To zapytanie poda nam klasy, w których jest ponad 30 obcokrajowców, a nie tego oczekiwaliśmy. Na szczęście, sama składnia MySQLa podpowiada nam jak się zachowa, i wymusza umieszczenie `WHERE` nad `GROUP BY` i `HAVING`. W ramach ćwiczenia, warto zastanowić się, jak poprawnie wykonać to zapytanie bez użycia operatora `INTERSECT`.
+To zapytanie poda nam klasy, w których jest ponad 30 obcokrajowców, a nie tego oczekiwaliśmy. Na szczęście, sama składnia MySQLa podpowiada nam jak się zachowa, i wymusza umieszczenie `WHERE` nad `GROUP BY` i `HAVING`. Warto zastanowić się, jak poprawnie wykonać to zapytanie bez użycia operatora `INTERSECT`.
 
 Gdy używamy `INTERSECT` musimy pamiętać, że **kolejność oraz ilość zwracanych kolumn musi być taka sama we wszystkich zapytaniach**. W przeciwnym wypadku dane zostaną źle zinterpretowane.
 
