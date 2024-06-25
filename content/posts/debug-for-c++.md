@@ -27,7 +27,7 @@ The print format is following:
 
 Where `<line_nr>` is number of line where function has been called.
 
-As the declaration is in header file, we want to include it somewhere. To make it globally accessable you should place it in correct directory, where your compilator will find it. One of these, is `/usr/include` directory. Now we need `.cpp` file. That is where we can move to second feature:
+As the declaration is in header file, we want to include it somewhere. To make it globally accessible you should place it in correct directory, where your compilator will find it. One of these, is `/usr/include` directory. Now we need `.cpp` file. That is where we can move to second feature:
 
 # Automatic `main.cpp` file generation
 
@@ -73,7 +73,7 @@ I include my `debug` function in smart way:
 #endif
 ```
 
-The `#ifdef LOCAL` directive is true, when the `-DLOCAL` flag is present during compliation. This ensures that if I leave debug function calls in the code I submit, its declaration will be empty on the judging server, preventing compilation errors.
+The `#ifdef LOCAL` directive is true, when the `-DLOCAL` flag is present during compilation. This ensures that if I leave debug function calls in the code I submit, its declaration will be empty on the judging server, preventing compilation errors.
 
 You may want to customize this file according to your habits and preferences. Check the full file template [here](https://github.com/JakubZojdzik/debug/blob/master/main.cpp).
 
