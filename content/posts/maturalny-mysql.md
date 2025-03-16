@@ -2,7 +2,7 @@
 title: 'Maturalny MySQL'
 summary: 'Maturalne zagadnienia związane z zapytaniami SQL'
 date: 2024-01-19T21:29:58+01:00
-draft: false
+draft: true
 ---
 
 

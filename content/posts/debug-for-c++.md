@@ -2,7 +2,7 @@
 title: "Debug for C++"
 summary: "Steal print() from Python and put it into C++"
 date: 2024-01-24T23:20:51+01:00
-draft: false
+draft: true
 ---
 
 # Competitive programming
