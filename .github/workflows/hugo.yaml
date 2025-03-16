@@ -57,17 +57,23 @@ jobs:
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
       - name: Build with Hugo
         env:
-          # For maximum backward compatibility with Hugo modules
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
         run: |
-          hugo \
-            --gc \
-            --minify
+          hugo --gc --minify
+          if [ ! -d "./public" ]; then
+            echo "Error: Hugo did not generate a public/ directory!"
+            exit 1
+          fi
+
+      - name: Debug public folder
+        run: ls -l ./public
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
+          name: github-pages
 
   # Deployment job
   deploy:
