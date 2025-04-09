@@ -25,9 +25,6 @@ jobs:
       - name: Build the site
         run: hugo --minify
 
-      - name: Clean old files
-        run: rm -rf public/*
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
