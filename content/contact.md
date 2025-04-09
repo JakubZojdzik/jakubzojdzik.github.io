@@ -4,7 +4,6 @@ layout: "simple"
 sharingLinks: [""]
 ---
 
-## Email ✉️
 
 Email me -> [jakubzojdzik@duck.com](mailto:jakubzojdzik@duck.com)
 
