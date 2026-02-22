@@ -50,6 +50,6 @@ In order to validate algorithm's output I implemented visualization for test set
 
 ![visualization1](./img_50.jpg)
 
-![visualization2](./img50000.jpg)
+![visualization2](./img_50000.jpg)
 
 ![visualization3](./img_ring.jpg)
