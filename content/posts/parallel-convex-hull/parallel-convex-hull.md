@@ -42,7 +42,7 @@ For points sampled from circle, naive parallel algorithm had only slightly worse
 
 For points sampled from ring, naive parallel algorithm did much worse. It is because this algorithm iterates over partitions sequentially, and optimizes only inner-partition calculations. In the case of ring, number of partition is high, and there aren't many points in each of them. On the other hand, algorithm from paper is able to handle multiple partition at once.
 
-![chart2](./resuts_ring.png)
+![chart2](./results_ring.png)
 
 ## Visualization
 
