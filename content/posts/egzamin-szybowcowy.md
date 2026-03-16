@@ -23,12 +23,11 @@ oraz gradienty:
 
 Rozróżnia się także:
 - gradient suchoadiabatyczny: -10°C / 1000m
-- gradient ailgotnoadiabatyczny: -6°C / 1000m
+- gradient wilgotnoadiabatyczny: -6°C / 1000m
 
 Adiabatyczny, znaczy taki, w którym nie zachodzi wymiana ciepła z otoczeniem.
 
-> [!NOTE]
-> Te gradienty dotyczą tylko troposfery, czyli do około 11km AMSL
+UWAGA: Te gradienty dotyczą tylko troposfery, czyli do około 11km AMSL
 
 ## Równowaga atmosfery
 
@@ -48,10 +47,12 @@ Unoszące się powtrze hamuje ma taką samą temperaturę jak otoczenie. Ani nie
 ## Zjawiska pogodowe
 
 Mgła - widzialność pozioma przy ziemi poniżej 1000m
+
 Zamglenie - widoczność pozioma przy ziemi pomiędzy 1000m a 2000m
+
 Szron - lodowy osad w postaci igiełkowatego nalotu. Powstaje w wyniku resublimacji pary wodnej.
-Gołoledź - gładki lodowy osad. Powstaje w wyniku marznących opadów, lub mgły. symbol `~`
-Rosa
+
+Gołoledź - gładki lodowy osad. Powstaje w wyniku marznących opadów, lub mgły. Symbol `~`
 
 ## Fronty atmosferyczne
 
@@ -125,4 +126,5 @@ W przeciwnym wypadku, zachodzi okluzja ciepła a efekt jest podobny do frontu ci
 # Jednostki
 
 1 hPa = 0.75 mmHg
+
 1 kn - 1.85 km/h
