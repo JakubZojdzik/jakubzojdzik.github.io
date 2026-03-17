@@ -7,6 +7,85 @@ draft: false
 
 # Prawo lotnicze
 
+## Struktura przestrzeni powietrznej
+
+ATC - Air Traffic Control
+
+Nad terenem Polski i naszego Bałtyku jest FIR Warszawa, czyli służba informacji.
+
+### Klasy przestrzeni powietrznej
+
+- Klasa A - Tylko IFR. Przestrzeń kontrolowana z pełną separacją. Wymagana łączność radiowa.
+- Klasa B - IFR oraz VFR. Przestrzeń kontrolowana z pełną separacją. Wymagana łączność radiowa.
+- Klasa C - IFR oraz VFR. Przestrzeń kontrolowana. Separacja tylko IFR-IFR oraz IFR-VFR.
+  Loty VFR obowiązuje ograniczenie prędkości przyżądowej (IAS) do 250kts na wysokości poniżej 3050m AMSL.
+- Klasa D - IFR oraz VFR. Przestrzeń kontrolowana. Separacja tylko IFR-IFR. Wymagana łączność radiowa.
+  Obowiązuje ograniczenie prędkości przyżądowej (IAS) do 250kts na wysokości poniżej 3050m AMSL.
+- Klasa E - IFR oraz VFR. Przestrzeń kontrolowana tylko dla IFR. Brak separacji. Łączność wymagana tylko dla IFR.
+  Obowiązuje ograniczenie prędkości przyżądowej (IAS) do 250kts na wysokości poniżej 3050m AMSL.
+- Klasa F - IFR oraz VFR. Tylko służba doradcza dla IFR i informacja. Brak separacji.
+  Obowiązuje ograniczenie prędkości przyżądowej (IAS) do 250kts na wysokości poniżej 3050m AMSL.
+- Klasa G - IFR oraz VFR. Tylko informacja. Brak separacji.
+  Obowiązuje ograniczenie prędkości przyżądowej (IAS) do 250kts na wysokości poniżej 3050m AMSL.
+
+### Elementy przestrzeni powietrznej
+
+- CTA - Cntrolled Airspace - obszar kontrolowany, ogólnie
+- AWY - Airway - droga lotnicza, nie niżej niż 200m AGL
+- TMA - Terminal Control Area - rejon kontrolowany lotniska
+- MTMA - Military TMA
+- CTR - Control Zone - strefa kontrolowana lotniska
+- MCTR - Military CTR
+- ATZ - Aerodrome Traffic Zone - strefa ruchu lotniskowego
+- MRT - Military Route - stała trasa lotnictwa wojskowego
+- TSA - Temporary Segregated Area - strefa czasowo wydzielona
+- TRA - Temporary Reserved Area - strefa czasowo zarezerwowana
+- TFR - Feeding Route - trasa dolotowa do strefy
+- P - Prohibited Area - strefa zakazana
+- R - Restricted Area - strefa ograniczona (np. dla statków bez silników)
+- D - Dangerous Area - strefa niebezpieczna
+
+
+## Aneksy ICAO
+
+1. Licencjonowanie personelu
+2. Przepisy ruchu lotniczego
+3. Służba meteorologiczna dla międzynarodowej żeglugi powietrznej
+4. Mapy lotnicze
+5. Jednostki miar do wykorzystania podczas operacji powietrznyc i naziemnych
+6. Eksploatacja statków powietrznych
+7. ZNaki przynależności państwowej oraz rejestracyjne
+8. Zdatność do lotu statków powietrznych
+9. Ułatwienia
+10. Łączność lotnicza
+11. Służby ruchu lotniczego
+12. Poszukiwanie i ratownictwo
+13. Badanie wypadków i incydentów lotniczych
+14. Lotniska
+15. Służby informacji lotniczej
+16. Ochrona środowiska
+17. Ochrona międzynarodowego lotnictwa cywilnego przed aktami bezprawnej ingerencji
+18. Bezpieczny transport materiałów niebezpiecznych drogą powietrzną
+19. Zarzędzanie bezpieczeństwem
+
+## Dokumenty
+
+- Świadectwo kwalifikacji personelu lotniczego
+
+
+## Służby
+
+- Słuzba łączności
+- Służba nawigacji
+- Służba dozorowania
+- Służba informacji powietrznej
+
+## Prezes ULC
+
+Może i robi wszystko.
+
+Może upoważnić pracowników ULC do wydawania, odmawiania wydania, uznawania, zawieszania uznania, przywracania uznania, odmawiania uznania, cofania uznania, cofania, zawieszania, przywracania i zmieniania licencji?
+
 # Meteorologia
 
 ## ISA
@@ -110,6 +189,16 @@ W przeciwnym wypadku, zachodzi okluzja ciepła a efekt jest podobny do frontu ci
 - Powietrze zwrotnikowe kontynentalne (PZk) - tereny pustynne. Bardzo gorące i suche powietrze. Zwiastuje silną termikę. 
 
 # Komunikacja
+
+## Częstotliwości
+
+- Ratunkowa: 121.5 MHz
+- Pomocnicza dla ratunkowej: 123.1 MHz
+
+## Komunikaty
+
+- MAYDAY - Bezpośrednie zagrożenie dla zdrowia i życia
+- PAN-PAN
 
 # Wiedza ogólna o statku powietrznym
 
