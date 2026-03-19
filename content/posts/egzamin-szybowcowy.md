@@ -41,9 +41,33 @@ Nad terenem Polski i naszego Bałtyku jest FIR Warszawa, czyli służba informac
 - TSA - Temporary Segregated Area - strefa czasowo wydzielona
 - TRA - Temporary Reserved Area - strefa czasowo zarezerwowana
 - TFR - Feeding Route - trasa dolotowa do strefy
+- ADIZ - Air Defense Identification Zone - Strefa identyfikacji obrony powietrznej
 - P - Prohibited Area - strefa zakazana
 - R - Restricted Area - strefa ograniczona (np. dla statków bez silników)
 - D - Dangerous Area - strefa niebezpieczna
+
+## Sygnały
+
+### Z wieży
+
+- Ciągłe zielone do statku w locie: zezwala się lądować
+- Ciągłe zielone do statku na ziemi: zezwala się startować
+- Przerywane zielone do statku w locie: wracać do lądowania
+- Przerywane zielone do statku na ziemi: zezwala się kołować
+- Czerwone ciągłe do statku w locie: nie lądować, kontynuować krążenie
+- Czerwone ciągłe do statku na ziemi: zatrzymać się
+- Przerywane czerwone do statku w locie: lotnisko niebezpieczne, nie lądować
+- Przerywane czerwone do statku na ziemi: kołować poza polem wzlotów będącym w użyciu
+
+### Z ziemi
+
+- "V" - potrzebna pomoc
+- "X" - potrzebna pomoc medyczna
+
+### Odpowiedzi
+
+- Potwierdzenie przyjęcia w dzień: kilkukrotne przechylenie skrzydeł
+- Potwierdzenie przyjęcia w nocy: włączanie i wyłączanie świateł
 
 
 ## Aneksy ICAO
@@ -194,6 +218,7 @@ W przeciwnym wypadku, zachodzi okluzja ciepła a efekt jest podobny do frontu ci
 
 - Ratunkowa: 121.5 MHz
 - Pomocnicza dla ratunkowej: 123.1 MHz
+- Komunikacja ze statkami morskimi uczestniczącymi w akcjach poszukiwawczo - ratowniczych (SAR): 156,3 MHz
 
 ## Komunikaty
 
@@ -206,11 +231,52 @@ W przeciwnym wypadku, zachodzi okluzja ciepła a efekt jest podobny do frontu ci
 
 # Człowiek - możliwości i ograniczenia
 
+## Kompensacja tlenowa
+
+- Strefa pełnej kompensacji tlenowej: 2000-3500m
+- Strefa niepełnej kompensacji tlenowej 4000-5500m
+
+W strefie niepełnej kompensacji obowiązkowa jest aparatura tlenowa - powyżej 4000m
+
 # Nawigacja
 
 # Procedury operacyjne
 
 # Zasady lotu
+
+## Stateczność
+
+- Stateczność **statyczna** opisuje pierwszą reakcję statku tuż po wyprowadzeniu z równowagi.
+  Jeśli jest ddatnia to samolot zacznie wracać do równowagi.
+  Jeśli jest obojętna, to szybowiec pozostanie w nowym położeniu.
+  Jeśli jest ujemna, to szybowiec odchyli się jeszcze bardziej.
+- Stateczność **dynamiczna** opisuje dłuższy okres czasu po wytrąceniu statku z równowagi.
+  Jeśli jest dodatnia, to drgania z czasem zanikają.
+  Jeśli jest obojętna, to oscylacje są stałe.
+  Jeśli jest ujemna, to oscylacje narastają.
+
+Rozróżniamy:
+
+- Stateczność podłużną
+  
+  Wpływają na nią:
+  
+  - położenie CG (im bardziej z przodu, tym większa stateczność podłużna statyczna)
+  - skos skrzydła (ujemny skos zmniejsza stateczność podłużną)
+  - usterzenie poziome
+
+- Stateczność poprzeczną
+
+  Wpływają na nią:
+  
+  - Wznios skrzydeł
+
+- Stateczność kierunkowa
+
+  Wpływa na nią:
+
+  - Skos skrzydeł
+  - Usterzenie pionwe
 
 # Jednostki
 
