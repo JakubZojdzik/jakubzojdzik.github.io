@@ -95,6 +95,7 @@ Nad terenem Polski i naszego Bałtyku jest FIR Warszawa, czyli służba informac
 ## Dokumenty
 
 - Świadectwo kwalifikacji personelu lotniczego
+- Instrukcja użytkowania w locie
 
 
 ## Służby
@@ -104,11 +105,62 @@ Nad terenem Polski i naszego Bałtyku jest FIR Warszawa, czyli służba informac
 - Służba dozorowania
 - Służba informacji powietrznej
 
-## Prezes ULC
 
-Może i robi wszystko.
+## Przepisy lotów VFR
 
-Może upoważnić pracowników ULC do wydawania, odmawiania wydania, uznawania, zawieszania uznania, przywracania uznania, odmawiania uznania, cofania uznania, cofania, zawieszania, przywracania i zmieniania licencji?
+### VMC
+
+VMC to warunki meteorologiczne dla lotów z widocznością:
+- Widzialność w locie - 5km
+
+### Widzialność i odległość od chmur
+
+| Zakres wysokości | Klasa przestrzeni powietrznej | Widzialność w locie | Odległość od chmur |
+|------------------|-------------------------------|---------------------|---------------------|
+| Na i powyżej 3 050 m (10 000 ft) AMSL | A*** / B / C / D / E / F / G | 8 km | Pozioma – 1 500 m; Pionowa – 300 m (1 000 ft) |
+| Poniżej 3 050 m (10 000 ft) AMSL i powyżej 900 m (3 000 ft) AMSL lub powyżej 300 m (1 000 ft) nad terenem – w zależności od tego, co jest wyższe | A*** / B / C / D / E / F / G | 5 km | Pozioma – 1 500 m; Pionowa – 300 m (1 000 ft) |
+| Na i poniżej 900 m (3 000 ft) AMSL lub 300 m (1 000 ft) nad terenem – w zależności od tego, co jest wyższe | A*** / B / C / D / E | 5 km | Pozioma – 1 500 m; Pionowa – 300 m (1 000 ft) |
+| Na i poniżej 900 m (3 000 ft) AMSL lub 300 m (1 000 ft) nad terenem – w zależności od tego, co jest wyższe | F / G | 5 km** | Z dala od chmur i z widocznością powierzchni ziemi |
+
+### Wysokość lotu
+
+- Limit górny: FL200
+- Limit dolny: 150m
+- Limit nad gętsą zabudową: 300m nad najwyższą przeszkodą w promieniu 600m
+
+### Ograniczenia odległości
+
+- Minimalna wysokość lotu to 900m AMSL lub 300m nad terenem
+
+- Minimalna wysokość lotu nad gęstą zabudową dużych miast, miasteczek, osiedli lub nad zgromadzeniem osób na wolnym powietrzu to **300 m (1000 ft)** nad najwyższą przeszkodą znajdującą się w promieniu 600 m
+
+- Odległość pozioma od chmur - 1500m
+
+- Odległość pionowa od chmur - 300m
+
+### Unikanie kolizji
+
+Statek, który ma pierwszeństwo, powinien lecieć po przewidywalnym torze, nie zmieniając prędkości, wysokości ani kursu.
+
+1. Jeśli statki mają przeciwne kursy, i grozi im kolizja, obydwa **skręcają w prawo**.
+2. Jeśli statki mają zbieżne kursy, to **pierwszeństwo ma statek po prawej**.
+3. Podczas wyprzedzania (kąt do statku wyprzedzanego jest mniejszy niż 70°) statek wyprzedzany ma pierwszeństwo, a statek wyprzadzajćy mija go z prawej strony.
+4. Statek lądujący ma pierwszeństwo nad statkami w locie i na ziemi.
+5. Pierwsześńtwo do lądowania mają statki znajdujące się niżej.
+
+Jeśli dwa statki są różnej "klasy" to obowiązują inne zasady pierwszeństwa:
+- statki silnikowe cięższe od powietrza dają pierwszeństwo sterowcom, szybowcom i balonom
+- sterowce dają pierwszeństwo szybowcom i balonom
+- szybowce dają pierwszeństwo balonom
+- statki silnikowe dają pierwszeństwo drogi statkom holującym inne statki lub przedmioty
+
+### Plan lotu
+
+### Kody transpondera
+
+7700 - zagrożenie bezpieczeństwa lotu
+7600 - usterka radia
+7500 - uprowadzenie statku
 
 # Meteorologia
 
