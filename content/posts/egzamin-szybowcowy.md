@@ -117,10 +117,10 @@ VMC to warunki meteorologiczne dla lotów z widocznością:
 
 | Zakres wysokości | Klasa przestrzeni powietrznej | Widzialność w locie | Odległość od chmur |
 |------------------|-------------------------------|---------------------|---------------------|
-| Na i powyżej 3 050 m (10 000 ft) AMSL | A*** / B / C / D / E / F / G | 8 km | Pozioma – 1 500 m; Pionowa – 300 m (1 000 ft) |
-| Poniżej 3 050 m (10 000 ft) AMSL i powyżej 900 m (3 000 ft) AMSL lub powyżej 300 m (1 000 ft) nad terenem – w zależności od tego, co jest wyższe | A*** / B / C / D / E / F / G | 5 km | Pozioma – 1 500 m; Pionowa – 300 m (1 000 ft) |
-| Na i poniżej 900 m (3 000 ft) AMSL lub 300 m (1 000 ft) nad terenem – w zależności od tego, co jest wyższe | A*** / B / C / D / E | 5 km | Pozioma – 1 500 m; Pionowa – 300 m (1 000 ft) |
-| Na i poniżej 900 m (3 000 ft) AMSL lub 300 m (1 000 ft) nad terenem – w zależności od tego, co jest wyższe | F / G | 5 km** | Z dala od chmur i z widocznością powierzchni ziemi |
+| Na i powyżej 3 050 m (10 000 ft) AMSL | A / B / C / D / E / F / G | 8 km | Pozioma – 1 500 m; Pionowa – 300 m (1 000 ft) |
+| Poniżej 3 050 m (10 000 ft) AMSL i powyżej 900 m (3 000 ft) AMSL lub powyżej 300 m (1 000 ft) nad terenem – w zależności od tego, co jest wyższe | A / B / C / D / E / F / G | 5 km | Pozioma – 1 500 m; Pionowa – 300 m (1 000 ft) |
+| Na i poniżej 900 m (3 000 ft) AMSL lub 300 m (1 000 ft) nad terenem – w zależności od tego, co jest wyższe | A / B / C / D / E | 5 km | Pozioma – 1 500 m; Pionowa – 300 m (1 000 ft) |
+| Na i poniżej 900 m (3 000 ft) AMSL lub 300 m (1 000 ft) nad terenem – w zależności od tego, co jest wyższe | F / G | 5 km | Z dala od chmur i z widocznością powierzchni ziemi |
 
 ### Wysokość lotu
 
@@ -128,15 +128,6 @@ VMC to warunki meteorologiczne dla lotów z widocznością:
 - Limit dolny: 150m
 - Limit nad gętsą zabudową: 300m nad najwyższą przeszkodą w promieniu 600m
 
-### Ograniczenia odległości
-
-- Minimalna wysokość lotu to 900m AMSL lub 300m nad terenem
-
-- Minimalna wysokość lotu nad gęstą zabudową dużych miast, miasteczek, osiedli lub nad zgromadzeniem osób na wolnym powietrzu to **300 m (1000 ft)** nad najwyższą przeszkodą znajdującą się w promieniu 600 m
-
-- Odległość pozioma od chmur - 1500m
-
-- Odległość pionowa od chmur - 300m
 
 ### Unikanie kolizji
 
@@ -154,13 +145,12 @@ Jeśli dwa statki są różnej "klasy" to obowiązują inne zasady pierwszeńst
 - szybowce dają pierwszeństwo balonom
 - statki silnikowe dają pierwszeństwo drogi statkom holującym inne statki lub przedmioty
 
-### Plan lotu
 
 ### Kody transpondera
 
-7700 - zagrożenie bezpieczeństwa lotu
-7600 - usterka radia
-7500 - uprowadzenie statku
+- 7700 - zagrożenie bezpieczeństwa lotu
+- 7600 - usterka radia
+- 7500 - uprowadzenie statku
 
 # Meteorologia
 
@@ -330,10 +320,6 @@ Do obudowy przyżądu doprowadza się ciśnienie statyczne poprzez rurkę włoso
 po chwili. Wewnątrz obudowy, znajduje się membranowa puszka różnicowa, do której soprowadzane jest ciśnienie statyczne, ale szerszym przewodem.
 Podczas zmiany wysokości, ciśnienie w puszczce różnicowej zmieni się szybciej niż w obudowie, więc puszka odkształci się, co zostanie przełożone
 na wskazówkę przyrządu.
-
-## Wychylenie różnicowe
-
-Lotka do góry wychyla się bardziej niż lotka, która wychyla się w dół. Kompensuje to niesymetryczny opór powodowany przez niesymetryczny profil skrzydła. 
 
 ## Świadectwo zdolności do lotu
 
