@@ -78,7 +78,7 @@ Nad terenem Polski i naszego Bałtyku jest FIR Warszawa, czyli służba informac
 4. Mapy lotnicze
 5. Jednostki miar do wykorzystania podczas operacji powietrznyc i naziemnych
 6. Eksploatacja statków powietrznych
-7. ZNaki przynależności państwowej oraz rejestracyjne
+7. Znaki przynależności państwowej oraz rejestracyjne
 8. Zdatność do lotu statków powietrznych
 9. Ułatwienia
 10. Łączność lotnicza
@@ -213,7 +213,7 @@ Gołoledź - gładki lodowy osad. Powstaje w wyniku marznących opadów, lub mg�
 
 1. Front ciepły
 
-Ciepła masa powietrza wdrapuje się na chłodną i przesuwa ją. Przemieszcza się powoli, około 15-30 km/h.
+Ciepła masa powietrza wdrapuje się na chłodną i przesuwa ją. Przemieszcza się powoli, około 20-40 km/h.
 Fron niesie przed sobą chmury Ci, potem Cs (przy których występuje efekt "halo"), potem As i Ns
 z długotrwałymi opadami już 300-400km przed linią frontu. Kąt między masami powietrza jest mały,
 około 0.3°, czyli nachylenie wynosi około 1:200. Podczas przejścia frontu często pojawia się mgła.
@@ -241,6 +241,11 @@ Jeśli powietrze chłodne za frontem chłodnym jest chłodniejsze od powietrza c
 to zachodzi okluzja chłodna i występuje zachmurzenie typowe dla obu rodzajów frontów.
 W przeciwnym wypadku, zachodzi okluzja ciepła a efekt jest podobny do frontu ciepłego, ale zwykle ze słabszym efektem.
 
+
+Wycinek ciepły niżu, to obszar między frontem ciepłym a chłodnym, w którym zalega masa powietrza cieplejszego niż otoczenie.
+
+Wycinek chłodny niżu to obszar za frontem chłodnym.
+
 ## Ośrodki baryczne
 
 - Wyż - ciężkie powietrze opada, więc niebo jest bezchmurne. Słońce nagrzewa ziemię, więc występuje termika wypracowana.
@@ -264,6 +269,14 @@ W przeciwnym wypadku, zachodzi okluzja ciepła a efekt jest podobny do frontu ci
   Zwiastuje burze i intensywne opady.
 - Powietrze zwrotnikowe kontynentalne (PZk) - tereny pustynne. Bardzo gorące i suche powietrze. Zwiastuje silną termikę. 
 
+## Pomiary
+
+- Temperatura - na wysokości 2m
+
+- Wiatr dolny - na wysokości 10m
+
+- Wiatry górne i gradient temperatury - radiosondy
+
 # Komunikacja
 
 ## Częstotliwości
@@ -271,15 +284,78 @@ W przeciwnym wypadku, zachodzi okluzja ciepła a efekt jest podobny do frontu ci
 - Ratunkowa: 121.5 MHz
 - Pomocnicza dla ratunkowej: 123.1 MHz
 - Komunikacja ze statkami morskimi uczestniczącymi w akcjach poszukiwawczo - ratowniczych (SAR): 156,3 MHz
+- Komunikacja powietrze-powietrze: 123,450 MHz
+- Cywilna służba ruchoma lotnicza (czyli wszyscy): 118-136,975 MHz
 
 ## Komunikaty
 
 - MAYDAY - Bezpośrednie zagrożenie dla zdrowia i życia
 - PAN-PAN
 
+## Wymowa
+
+Poziomy lotu czyta się po cyferze, czyli FL240 to "Poziom lotu dwa cztery zero"
+
 # Wiedza ogólna o statku powietrznym
 
+## Wytrzymałość
+
+- **Wytrzymałość doraźna** konstrukcji lotniczej - maksymalne obciążenie jakie zniesie konstrukcja bez wystąpienia katastrofalnego uszkodzenia
+
+- **Wytrzyjałość dopuszczalna** konstrukcji lotniczej - maksymalne obciążenie jakie zniesie konstrukcja bez trwałych odkształceń, które naruszyłyby bezpieczeństwo
+
+- **Współczynnik bezpieczeństwa** konstrukcji lotniczej - stosunek wytrzymałości doraźnej do dopuszczalnej. Jest określony w przepisach dotyczących budowy konstrukcji lotniczych.
+
+## Konstrukcja
+
+- Skorupowa
+  Obciążenia przenosi głównie poszycie, wzmocnione wręgami
+
+- Półskorupowa
+  Tak jak skorupowa, dodatkowym wzmocnieniem są podłużnice
+
+## Wysokościomierz
+
+Ciśnienie statyczne jest doprowadzane do wysokościomierza. Znajduje się tam próżniowa puszka aneroidowa, która odkształca się przy zmianie
+ciśnienia, co jest przenoszone na wskazówkę przyrządu.
+
+## Prędkościomierz
+
+Elementem pomiearowym jest różnicowa puszka membranowa. Do jej wnętrzna doprowadzane jest ciśnienie statyczne, a do obudowy ciśnienie całkowite.
+Puszka odkształca się w zależności od różnic ciśnień, czyli ciśnienia dynamicznego, co jest przenoszone na wskazówkę przyrządu.
+
+## Wariometr
+
+Do obudowy przyżądu doprowadza się ciśnienie statyczne poprzez rurkę włosowatą (kapilarę), która jest wąska, więc ciśnienie wyrównuje się dopiero
+po chwili. Wewnątrz obudowy, znajduje się membranowa puszka różnicowa, do której soprowadzane jest ciśnienie statyczne, ale szerszym przewodem.
+Podczas zmiany wysokości, ciśnienie w puszczce różnicowej zmieni się szybciej niż w obudowie, więc puszka odkształci się, co zostanie przełożone
+na wskazówkę przyrządu.
+
+## Wychylenie różnicowe
+
+Lotka do góry wychyla się bardziej niż lotka, która wychyla się w dół. Kompensuje to niesymetryczny opór powodowany przez niesymetryczny profil skrzydła. 
+
+## Świadectwo zdolności do lotu
+
+Dokument wydawany przez Techniczny Państwowy Nadzór Lotniczy zatwierdzający jakiś statek powietrzny. Świadectwo ma ograniczony okres ważności.
+
+## Kompensacja
+
+### Masowa
+
+Stosowana do wyeliminowania drgań samowzbudnych lotek i sterów (flatteru).
+Polega na umieszczeniu ciężarków (wyważających) przed osią obrotu powierzchni sterowej
+
+### Aerodynamiczna
+
+Ma na celu zmniejszenie sił na sterach potrzebnych do wychylenia powierzchni sterowej. 
+
 # Osiągi i planowanie lotu
+
+## Błąd wysokościomierza
+
+- Barometryczny - Ciśnienie na poziomie morza różni się od wartości 1013.25hPa
+- Temperaturowy - Gradient zmiany temperatury jest inny niż standardowy
 
 # Człowiek - możliwości i ograniczenia
 
@@ -292,7 +368,15 @@ W strefie niepełnej kompensacji obowiązkowa jest aparatura tlenowa - powyżej 
 
 # Nawigacja
 
-# Procedury operacyjne
+Deklinacja - odchylenie północy magnetycznej od rzeczywistej
+
+Dewiacja - odchylenie północy busoli od magnetycznej
+
+Inklinacja - kąt między płaszczyzną styczną do ziemi a kierunkiem wektora pola magnetycznego
+
+Ortodroma - wycinek koła wielkiego, najkrótsza droga między punktami biegnąca po powierzchni ziemi
+
+Loksodroma - droga biegnąca po powierzchni ziemi, która przecina południki pod jednakowym kątem. Odpowiada drodze ze stałym kursem magnetycznym.
 
 # Zasady lotu
 
@@ -330,8 +414,19 @@ Rozróżniamy:
   - Skos skrzydeł
   - Usterzenie pionwe
 
+## Moment oporu lotek
+
+Lokta wychylana w dół wytwarza większy opór, ponieważ ciśnienie pod skrzydłem jest większe.
+Gdy wychyli się lewą lotkę w dół, a prawą w górę o jednakowy kąt, to poza przechyleniem szybowca w prawo pojawi się niechciana siła
+odchylająca szybowiec w lewo. Aby jej zapobiec, stosuje się różnicowe wychylenie lotek, czyli lotka wychylająca się w dół,
+wychyla się o mniejszy kąt niż lotka wychylająca się do góry.
+
 # Jednostki
 
 1 hPa = 0.75 mmHg
 
-1 kn - 1.85 km/h
+1 kn = 1.85 km/h
+
+1 m = 0.3 ft
+
+1 MM = 1852 m
