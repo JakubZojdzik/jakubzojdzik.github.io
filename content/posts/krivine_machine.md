@@ -27,15 +27,15 @@ The Krivine machine implements the call-by-name strategy.
 
 We define a beta-redex as a term of the following form:
 
-\[
+$$
 (\lambda x.A) M
-\]
+$$
 
 It can be reduced using the beta rule:
 
-\[
+$$
 (\lambda x.A) M \longrightarrow A[x := M]
-\]
+$$
 
 A term is in normal form if it contains no β-redexes.
 
@@ -48,24 +48,24 @@ We only consider the head of a term. A WHNF is either:
 
 The syntax of WHNF can be described as:
 
-\[
+$$
 t ::= \lambda x.e \mid x e_{1} e_{2} \dots e_{n} 
-\]
+$$
 
 ## Closure
 
 The substitution used in β-reduction may duplicate terms and cause exponential growth during evaluation. To avoid this, the Krivine machine uses closures instead of direct substitution.
 A closure is a term paired with its environment:
 
-\[
+$$
 c ::= \langle t, \rho \rangle
-\]
+$$
 
 An environment is a finite mapping from variables to closures:
 
-\[
+$$
 \rho ::= [] \mid \rho[x \mapsto c]
-\]
+$$
 
 I write $[]$ for the empty environment, and $\rho[x \mapsto c]$ for an environment extended with a binding from $x$ to closure $c$.
 
@@ -73,9 +73,9 @@ I write $[]$ for the empty environment, and $\rho[x \mapsto c]$ for an environme
 
 The state of the Krivine machine is a triple
 
-\[
+$$
 (M, \rho, S)
-\]
+$$
 
 where:
 - $M$ is a term,
@@ -84,24 +84,24 @@ where:
 
 The machine is defined by the following transition rules:
 
-\[
+$$
 (\lambda x. M, \rho, c \cdot S) \longrightarrow (M, \rho[x \mapsto c], S)
-\]
+$$
 
-\[
+$$
 (M\ N, \rho, S) \longrightarrow (M, \rho, ( \langle N, \rho \rangle ) \cdot S)
-\]
+$$
 
-\[
+$$
 (x, \rho, S) \longrightarrow (M, \rho', S)
 \quad \text{where } \rho(x) = \langle M, \rho' \rangle
-\]
+$$
 
 The machine starts from an initial state:
 
-\[
+$$
 (M, [], \bullet)
-\]
+$$
 
 where $M$ is a closed term.
 
