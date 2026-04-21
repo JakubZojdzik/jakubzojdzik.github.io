@@ -2,14 +2,9 @@
 title: 'Maturalny MySQL'
 summary: 'Maturalne zagadnienia związane z zapytaniami SQL'
 date: 2024-01-19T21:29:58+01:00
-draft: true
+draft: false
 ---
 
-
-# Wstęp
-CKE niestety nie udostępnia rozwiązań maturalnych zadań bazodanowych. Zmusza to do robienia sporego researchu przy każdym zadaniu którego nie jesteśmy w stanie zrobić. Zebrałem więc swoje obserwacje aby ułatwić naukę innym.
-
-Nie jest to wprowadzenie dla tych którzy nie wiedzą co to SQL i nigdy nie pisali żadnych zapytań. Dalej będę zakładał, że wiesz co to `SELECT`, `UPDATE`, `ALTER`, `JOIN`, `GROUP BY`, `ORDER BY`, `LIMIT`, funkcje agregujące i typy danych. Czasami celowo pomijam szczegóły jeśli uważam że nie są istotne. Zawsze możesz doczytać więcej w [dokumentacji](https://dev.mysql.com/doc/refman/8.3/en/sql-statements.html)
 
 Na maturze w formule 2023 można wybrać oprogramowanie:
 
@@ -22,13 +17,7 @@ Na maturze w formule 2023 można wybrać oprogramowanie:
 > MySQL (MariaDB), PHP,
 > phpMyAdmin
 
-które jest dostępne zarówno pod Linuxem jak i Windowsem. Wszystkie zapytnia które zamieszczam są więc napisane w MySQL. Czasami wspominam o programie phpmyadmin, który służy do zażądzania bazą danych MySQL lub MariaDB. Z maturalnej oferty, chyba jest najlepszym wyborem do pisania i wykonywania wszystkich zapytań. Pozwala on też na łatwy i szybki import bazy danych z pliku `csv`. Warto dobrze się z nim zapoznać.
-
-Jeśli masz dockera, to dla przyspieszenia procesu przygotowywania środowiska polecam ten krótki [`docker-compose.yml`](https://gist.githubusercontent.com/JakubZojdzik/1422497cf09cf5e0355b64743ca9cc4f/raw/ba270c8a94db374384c45ad1f330bb84e406999a/docker-compose.yml), który posiada obrazy bazy danych MariaDB z hasłem do roota `root` (oczywiście warto je zmienić jeśli planujesz otwierać porty w publicznych sieciach), oraz phpmyadmin dostępnym pod portem `8080`. Utworzony zostanie również volume dla twojej bazy, więc po zdjęciu obrazu nie musisz obawiać się o utratę danych.
-
-Gdy znajdziesz błąd, lub zechcesz dopisać coś do dokumentu, pod nagłówkiem znajdziesz przycisk edycji.
-
-Miłego czytania!
+które jest dostępne pod Linuxem i Windowsem. Wszystkie zapytnia są więc napisane w MySQL. 
 
 # Zagadnienia
 
@@ -414,6 +403,3 @@ Jeśli parementrem funkcji jest `jednostka`, to należy wstawić tam jedną z wa
 - `a.liczba BETWEEN 2000 AND 2012`: Wybrany rok będzie zawierał się pomiędzy 2000 i 2012. Zastępuje zapis z operatorami `<=`, `>=`
 - `a.ROK IN (2000, 2006, 2012)`: Wybrany rok będzie jedym z podanych: 2000, 2006 lub 2012. Zastępuje zapis z operatorami `=`
 
-# Dzięki!
-
-Miło mi że poświęciłeś czas na ten artykuł. Jeśli chcesz pomóc mi go udoskonalić, na samej górze jest przycisk edycji :)
